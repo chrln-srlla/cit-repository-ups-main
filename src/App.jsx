@@ -6,12 +6,19 @@ import AdminLoginPage from './frontend/Admin/AdminLoginPage'
 import AdminDashboard from './frontend/Admin/AdminDashboard'
 import CapstoneProjects from './frontend/Admin/CapstoneProjects'
 import AdminAccountManagement from './frontend/Admin/AdminAccountManagement'
+import SignUp from './frontend/SignUp'
+import LogIn from './frontend/LogIn'
+
 
 export default function App() {
 	return (
 		<Router>
 			<Routes>
-				<Route path="/" element={<Home />} />
+				<Route path="/" element={<LogIn />} />
+				<Route path="/signup" element={<SignUp />} />
+
+
+				<Route path="/home" element={<Home />} />
 				<Route path="/capstone" element={<CapstoneSearch />} />
 				<Route path="/about" element={<AboutUs />} />
 				<Route path="/admin/login" element={<AdminLoginPage />} />

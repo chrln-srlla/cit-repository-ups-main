@@ -20,6 +20,8 @@ import SabileImage from '../../assets/images/Sabile.jpg'
 import SandagonImage from '../../assets/images/Sandagon.jpg'
 import SanJoseImage from '../../assets/images/SanJose.jpg'
 import VerzosaJMImage from '../../assets/images/VerzosaJM.png'
+import AlvaradoImage from '../../assets/images/Alvarado.png'
+
 
 const tabs = ["Frontend Developers", "Backend Developers", "UI/UX Designer", "Researcher", "Documenters"];
 
@@ -30,7 +32,7 @@ const teamMembers = {
       role: "Frontend Developer",
       status: "Programmer, Tailwind, React JS",
       section: "4A",
-      image: null
+      image: AlvaradoImage
     },
     {
       name: "Ian Jay Anoñuevo",
@@ -335,11 +337,11 @@ export default function AboutUs() {
   const [activeTab, setActiveTab] = useState("Frontend Developers");
 
   return (
-    <div className="min-h-screen bg-white flex flex-col">
+    <div className="flex flex-col min-h-screen bg-white">
       <Navbar />
       
       {/* About Us Section */}
-      <section className="relative overflow-hidden pt-24 md:pt-32 pb-20">
+      <section className="relative pt-24 pb-20 overflow-hidden md:pt-32">
         {/* V9.svg gradient background - same as Home page */}
         <div className="absolute inset-0 bg-white" aria-hidden />
         <div 
@@ -352,26 +354,26 @@ export default function AboutUs() {
           }} 
           aria-hidden 
         />
-        <div className="relative flex flex-col items-center text-center px-6">
+        <div className="relative flex flex-col items-center px-6 text-center">
           {/* Large Circular Icon */}
           <div className="mb-12">
-            <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-purple-100 to-purple-200 flex items-center justify-center shadow-2xl">
+            <div className="relative flex items-center justify-center w-64 h-64 rounded-full shadow-2xl md:w-80 md:h-80 bg-linear-to-br from-purple-100 to-purple-200">
               <img 
                 src={CITLogo} 
                 alt="CIT Logo" 
-                className="w-56 h-56 md:w-72 md:h-72 object-contain"
+                className="object-contain h-36 w-36 md:w-72 md:h-72"
               />
             </div>
           </div>
 
           {/* About Us Title */}
-          <h1 className="text-5xl md:text-6xl font-extrabold mb-10 leading-snug md:leading-tight">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-purple-600 to-purple-800">About Us</span>
+          <h1 className="mb-10 text-5xl font-extrabold leading-snug md:text-6xl md:leading-tight">
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 via-purple-600 to-purple-800">About Us</span>
           </h1>
 
           {/* Description */}
           <div className="max-w-4xl mx-auto mb-8">
-            <p className="text-gray-600 text-lg md:text-xl leading-relaxed text-center">
+            <p className="text-lg leading-relaxed text-center text-gray-600 md:text-xl">
               This system was created by Batch 2025, sections 4A and 4B, in compliance with their IT Elective subject. It serves as a centralized platform where students can easily access, upload, and explore capstone projects from the College of Information Technology. The purpose of this system is to promote academic collaboration, preserve student research, and provide a convenient digital space for knowledge sharing. It aims to make the research process more efficient and accessible for both students and faculty members, encouraging continuous learning and innovation within the college.
             </p>
           </div>
@@ -380,19 +382,19 @@ export default function AboutUs() {
 
       {/* Meet the Team Section */}
       <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="px-6 mx-auto max-w-7xl">
           {/* Title */}
-          <h2 className="text-4xl md:text-5xl font-extrabold text-center mb-4 leading-snug md:leading-tight">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-purple-600 to-purple-800">Meet the Team</span>
+          <h2 className="mb-4 text-4xl font-extrabold leading-snug text-center md:text-5xl md:leading-tight">
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 via-purple-600 to-purple-800">Meet the Team</span>
           </h2>
           
           {/* Subtitle */}
-          <p className="text-gray-600 text-center text-lg mb-12">
+          <p className="mb-12 text-lg text-center text-gray-600">
             Get to know the masterminds behind this innovative system.
           </p>
 
           {/* Team Roles Navigation */}
-          <div className="flex flex-wrap justify-center gap-4 md:gap-6 mb-8">
+          <div className="flex flex-wrap justify-center gap-4 mb-8 md:gap-6">
             {tabs.map((tab) => (
               <button
                 key={tab}
@@ -409,19 +411,19 @@ export default function AboutUs() {
           </div>
 
           {/* Role Description */}
-          <p className="text-gray-700 text-center max-w-3xl mx-auto mb-12">
+          <p className="max-w-3xl mx-auto mb-12 text-center text-gray-700">
             {roleDescriptions[activeTab]}
           </p>
 
           {/* Team Member Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
             {teamMembers[activeTab]?.map((member, index) => (
               <div
                 key={index}
-                className="bg-purple-50 rounded-xl p-3 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 flex flex-col"
+                className="flex flex-col p-3 transition-all duration-300 shadow-md bg-purple-50 rounded-xl hover:shadow-lg hover:scale-105"
               >
                 {/* Profile Picture */}
-                <div className="relative w-full mb-3 flex items-center justify-center" style={{ height: '180px' }}>
+                <div className="relative flex items-center justify-center w-full mb-3" style={{ height: '180px' }}>
                   {member.image ? (
                     <img
                       src={member.image}
@@ -429,8 +431,8 @@ export default function AboutUs() {
                       className="object-contain w-full h-full"
                     />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-purple-100 rounded-lg">
-                      <span className="text-purple-400 text-4xl font-bold">
+                    <div className="flex items-center justify-center w-full h-full bg-purple-100 rounded-lg">
+                      <span className="text-4xl font-bold text-purple-400">
                         {member.name.charAt(0)}
                       </span>
                     </div>
@@ -438,17 +440,17 @@ export default function AboutUs() {
                 </div>
 
                 {/* Name */}
-                <h3 className="text-base font-bold text-purple-800 text-center mb-1">
+                <h3 className="mb-1 text-base font-bold text-center text-purple-800">
                   {member.name}
                 </h3>
 
                 {/* Role */}
-                <p className="text-gray-700 text-center mb-1 text-sm font-normal">
+                <p className="mb-1 text-sm font-normal text-center text-gray-700">
                   {member.role}
                 </p>
 
                 {/* Status */}
-                <p className="text-gray-500 text-xs text-center">
+                <p className="text-xs text-center text-gray-500">
                   {member.status}
                 </p>
               </div>
@@ -458,13 +460,13 @@ export default function AboutUs() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gradient-to-r from-purple-200 via-purple-400 to-purple-900 text-white py-3 mt-auto">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <p className="text-sm md:text-base">
-            IT Capstone Repository System © 2025 College of Information Technology - All Rights Reserved.
-          </p>
-        </div>
-      </footer>
+        <footer className="py-3 mt-auto text-white bg-linear-to-r from-[#CD9EFF] via-[#7A55A3] to-[#4D0699]">
+          <div className="px-6 mx-auto text-center max-w-7xl">
+              <p className="text-sm md:text-base">
+                  IT Capstone Repository System © 2025 College of Information Technology - All Rights Reserved.
+              </p>
+          </div>
+        </footer>
     </div>
   )
 }

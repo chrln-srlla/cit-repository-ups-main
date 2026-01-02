@@ -104,32 +104,32 @@ export default function AdminDashboard() {
   // Skeleton Components with smooth shimmer effect
   const SkeletonShimmer = ({ className = "" }) => (
     <div className={`relative overflow-hidden ${className}`}>
-      <div className="absolute inset-0 -translate-x-full animate-shimmer bg-gradient-to-r from-transparent via-white/60 to-transparent"></div>
+      <div className="absolute inset-0 -translate-x-full animate-shimmer bg-linear-to-r from-transparent via-white/60 to-transparent"></div>
     </div>
   )
 
   const SkeletonCard = () => (
-    <div className="bg-white rounded-xl p-6 shadow-md relative overflow-hidden">
+    <div className="relative p-6 overflow-hidden bg-white shadow-md rounded-xl">
       <SkeletonShimmer className="absolute inset-0" />
       <div className="relative">
-        <div className="flex justify-between items-start mb-6">
-          <div className="h-4 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded w-24 relative overflow-hidden">
+        <div className="flex items-start justify-between mb-6">
+          <div className="relative w-24 h-4 overflow-hidden rounded bg-linear-to-r from-gray-200 via-gray-100 to-gray-200">
             <SkeletonShimmer />
           </div>
-          <div className="w-6 h-6 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded relative overflow-hidden">
+          <div className="relative w-6 h-6 overflow-hidden rounded bg-linear-to-r from-gray-200 via-gray-100 to-gray-200">
             <SkeletonShimmer />
           </div>
         </div>
         <div className="mb-4">
-          <div className="h-10 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded w-20 relative overflow-hidden">
+          <div className="relative w-20 h-10 overflow-hidden rounded bg-linear-to-r from-gray-200 via-gray-100 to-gray-200">
             <SkeletonShimmer />
           </div>
         </div>
-        <div className="flex justify-between items-end">
-          <div className="h-3 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded w-32 relative overflow-hidden">
+        <div className="flex items-end justify-between">
+          <div className="relative w-32 h-3 overflow-hidden rounded bg-linear-to-r from-gray-200 via-gray-100 to-gray-200">
             <SkeletonShimmer />
           </div>
-          <div className="w-5 h-5 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded relative overflow-hidden">
+          <div className="relative w-5 h-5 overflow-hidden rounded bg-linear-to-r from-gray-200 via-gray-100 to-gray-200">
             <SkeletonShimmer />
           </div>
         </div>
@@ -138,21 +138,21 @@ export default function AdminDashboard() {
   )
 
   const SkeletonChart = () => (
-    <div className="bg-white rounded-xl p-6 shadow-md border border-gray-200 relative overflow-hidden">
+    <div className="relative p-6 overflow-hidden bg-white border border-gray-200 shadow-md rounded-xl">
       <SkeletonShimmer className="absolute inset-0 opacity-20" />
       <div className="relative">
-        <div className="flex justify-between items-center mb-6">
-          <div className="h-6 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded w-32 relative overflow-hidden">
+        <div className="flex items-center justify-between mb-6">
+          <div className="relative w-32 h-6 overflow-hidden rounded bg-linear-to-r from-gray-200 via-gray-100 to-gray-200">
             <SkeletonShimmer />
           </div>
-          <div className="h-8 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded w-28 relative overflow-hidden">
+          <div className="relative h-8 overflow-hidden rounded bg-linear-to-r from-gray-200 via-gray-100 to-gray-200 w-28">
             <SkeletonShimmer />
           </div>
         </div>
-        <div className="h-64 bg-gradient-to-r from-gray-100 via-gray-50 to-gray-100 rounded relative overflow-hidden">
+        <div className="relative h-64 overflow-hidden rounded bg-linear-to-r from-gray-100 via-gray-50 to-gray-100">
           <SkeletonShimmer />
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="h-48 w-full bg-gradient-to-b from-gray-200/50 via-transparent to-transparent rounded"></div>
+            <div className="w-full h-48 rounded bg-linear-to-b from-gray-200/50 via-transparent to-transparent"></div>
           </div>
         </div>
       </div>
@@ -160,36 +160,36 @@ export default function AdminDashboard() {
   )
 
   const SkeletonList = () => (
-    <div className="bg-white rounded-xl p-6 shadow-md border border-gray-200 relative overflow-hidden">
+    <div className="relative p-6 overflow-hidden bg-white border border-gray-200 shadow-md rounded-xl">
       <SkeletonShimmer className="absolute inset-0 opacity-20" />
       <div className="relative">
-        <div className="flex justify-between items-center mb-6">
-          <div className="h-6 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded w-32 relative overflow-hidden">
+        <div className="flex items-center justify-between mb-6">
+          <div className="relative w-32 h-6 overflow-hidden rounded bg-linear-to-r from-gray-200 via-gray-100 to-gray-200">
             <SkeletonShimmer />
           </div>
-          <div className="h-8 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded w-28 relative overflow-hidden">
+          <div className="relative h-8 overflow-hidden rounded bg-linear-to-r from-gray-200 via-gray-100 to-gray-200 w-28">
             <SkeletonShimmer />
           </div>
         </div>
         <div className="space-y-4">
           {[1, 2, 3, 4, 5].map((num) => (
             <div key={num} className="flex items-start gap-4" style={{ animationDelay: `${num * 0.1}s` }}>
-              <div className="w-10 h-10 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded-full relative overflow-hidden">
+              <div className="relative w-10 h-10 overflow-hidden rounded-full bg-linear-to-r from-gray-200 via-gray-100 to-gray-200">
                 <SkeletonShimmer />
               </div>
               <div className="flex-1">
-                <div className="h-4 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded w-full mb-2 relative overflow-hidden">
+                <div className="relative w-full h-4 mb-2 overflow-hidden rounded bg-linear-to-r from-gray-200 via-gray-100 to-gray-200">
                   <SkeletonShimmer />
                 </div>
-                <div className="h-3 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded w-2/3 relative overflow-hidden">
+                <div className="relative w-2/3 h-3 overflow-hidden rounded bg-linear-to-r from-gray-200 via-gray-100 to-gray-200">
                   <SkeletonShimmer />
                 </div>
               </div>
-              <div className="flex-shrink-0">
-                <div className="h-4 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded w-12 mb-1 relative overflow-hidden">
+              <div className="shrink-0">
+                <div className="relative w-12 h-4 mb-1 overflow-hidden rounded bg-linear-to-r from-gray-200 via-gray-100 to-gray-200">
                   <SkeletonShimmer />
                 </div>
-                <div className="h-3 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded w-8 relative overflow-hidden">
+                <div className="relative w-8 h-3 overflow-hidden rounded bg-linear-to-r from-gray-200 via-gray-100 to-gray-200">
                   <SkeletonShimmer />
                 </div>
               </div>
@@ -201,27 +201,27 @@ export default function AdminDashboard() {
   )
 
   const SkeletonPieChart = () => (
-    <div className="bg-white rounded-xl p-6 shadow-md border border-gray-200 relative overflow-hidden">
+    <div className="relative p-6 overflow-hidden bg-white border border-gray-200 shadow-md rounded-xl">
       <SkeletonShimmer className="absolute inset-0 opacity-20" />
       <div className="relative">
-        <div className="h-6 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded w-24 mb-6 relative overflow-hidden">
+        <div className="relative w-24 h-6 mb-6 overflow-hidden rounded bg-linear-to-r from-gray-200 via-gray-100 to-gray-200">
           <SkeletonShimmer />
         </div>
         <div className="flex items-center gap-8">
-          <div className="w-64 h-64 bg-gradient-to-br from-gray-100 via-gray-50 to-gray-100 rounded-full relative overflow-hidden">
+          <div className="relative w-64 h-64 overflow-hidden rounded-full bg-linear-to-br from-gray-100 via-gray-50 to-gray-100">
             <SkeletonShimmer />
-            <div className="absolute inset-4 bg-white rounded-full"></div>
+            <div className="absolute bg-white rounded-full inset-4"></div>
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-32 h-32 bg-gradient-to-r from-gray-200/30 via-gray-100/30 to-gray-200/30 rounded-full"></div>
+              <div className="w-32 h-32 rounded-full bg-linear-to-r from-gray-200/30 via-gray-100/30 to-gray-200/30"></div>
             </div>
           </div>
           <div className="space-y-3">
             {[1, 2, 3, 4].map((num) => (
               <div key={num} className="flex items-center gap-2" style={{ animationDelay: `${num * 0.1}s` }}>
-                <div className="w-3 h-3 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded-full relative overflow-hidden">
+                <div className="relative w-3 h-3 overflow-hidden rounded-full bg-linear-to-r from-gray-200 via-gray-100 to-gray-200">
                   <SkeletonShimmer />
                 </div>
-                <div className="h-4 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded w-20 relative overflow-hidden">
+                <div className="relative w-20 h-4 overflow-hidden rounded bg-linear-to-r from-gray-200 via-gray-100 to-gray-200">
                   <SkeletonShimmer />
                 </div>
               </div>
@@ -233,11 +233,11 @@ export default function AdminDashboard() {
   )
 
   return (
-    <div className="min-h-screen bg-gray-50 flex">
+    <div className="flex min-h-screen bg-gray-50">
       {/* Sidebar */}
-      <aside className="w-20 bg-purple-900 flex flex-col items-center py-6 gap-6 h-screen fixed left-0 top-0 overflow-hidden">
+      <aside className="fixed top-0 left-0 flex flex-col items-center w-20 h-screen gap-6 py-6 overflow-hidden bg-purple-900">
         {/* Dashboard Icon */}
-        <div className="w-8 h-8 flex items-center justify-center text-white cursor-pointer hover:bg-purple-800 rounded-lg transition-colors">
+        <div className="flex items-center justify-center w-8 h-8 text-white transition-colors rounded-lg cursor-pointer hover:bg-purple-800">
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
           </svg>
@@ -246,7 +246,7 @@ export default function AdminDashboard() {
         {/* Document Icon */}
         <div 
           onClick={() => navigate('/admin/capstone-projects')}
-          className="w-8 h-8 flex items-center justify-center text-white cursor-pointer hover:bg-purple-800 rounded-lg transition-colors"
+          className="flex items-center justify-center w-8 h-8 text-white transition-colors rounded-lg cursor-pointer hover:bg-purple-800"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -256,7 +256,7 @@ export default function AdminDashboard() {
         {/* Users/People Icon */}
         <div 
           onClick={() => navigate('/admin/account-management')}
-          className="w-8 h-8 flex items-center justify-center text-white cursor-pointer hover:bg-purple-800 rounded-lg transition-colors"
+          className="flex items-center justify-center w-8 h-8 text-white transition-colors rounded-lg cursor-pointer hover:bg-purple-800"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
@@ -264,18 +264,18 @@ export default function AdminDashboard() {
         </div>
 
         {/* User Settings Icon */}
-        <div className="w-8 h-8 flex items-center justify-center text-white cursor-pointer hover:bg-purple-800 rounded-lg transition-colors relative">
+        <div className="relative flex items-center justify-center w-8 h-8 text-white transition-colors rounded-lg cursor-pointer hover:bg-purple-800">
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
           </svg>
-          <svg className="w-3 h-3 absolute bottom-0 right-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="absolute bottom-0 right-0 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
           </svg>
         </div>
 
         {/* Logout Icon */}
-        <div className="mt-auto w-8 h-8 flex items-center justify-center text-white cursor-pointer hover:bg-purple-800 rounded-lg transition-colors" onClick={() => setIsLogoutModalOpen(true)}>
+        <div className="flex items-center justify-center w-8 h-8 mt-auto text-white transition-colors rounded-lg cursor-pointer hover:bg-purple-800" onClick={() => setIsLogoutModalOpen(true)}>
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
           </svg>
@@ -286,14 +286,14 @@ export default function AdminDashboard() {
       <main className="flex-1 p-8 ml-20">
         {/* Header */}
         <div className="mb-8">
-        <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-purple-600 to-purple-800">Admin</span>{' '}
+        <h1 className="text-4xl font-extrabold leading-tight md:text-5xl">
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 via-purple-600 to-purple-800">Admin</span>{' '}
             <span className="text-gray-900">Dashboard</span>
           </h1>
         </div>
 
         {/* Summary Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 gap-6 mb-8 md:grid-cols-2 lg:grid-cols-4">
           {isLoading ? (
             <>
               <SkeletonCard />
@@ -303,18 +303,18 @@ export default function AdminDashboard() {
             </>
           ) : (
             summaryCards.map((card, index) => (
-              <div key={index} className="bg-white rounded-xl p-6 shadow-md">
-                <div className="flex justify-between items-start mb-6">
-                  <p className="text-black text-sm font-medium">{card.title}</p>
+              <div key={index} className="p-6 bg-white shadow-md rounded-xl">
+                <div className="flex items-start justify-between mb-6">
+                  <p className="text-sm font-medium text-black">{card.title}</p>
                   <div className="text-purple-700">{getIcon(card.icon)}</div>
                 </div>
                 <div className="mb-4">
-                  <p className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-purple-400 via-purple-600 to-purple-800">
+                  <p className="text-4xl font-extrabold text-transparent bg-clip-text bg-linear-to-br from-purple-400 via-purple-600 to-purple-800">
                     {card.value}
                   </p>
                 </div>
-                <div className="flex justify-between items-end">
-                  <p className="text-gray-500 text-xs">{card.description}</p>
+                <div className="flex items-end justify-between">
+                  <p className="text-xs text-gray-500">{card.description}</p>
                   <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                   </svg>
@@ -325,7 +325,7 @@ export default function AdminDashboard() {
         </div>
 
         {/* Charts Row */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-1 gap-6 mb-8 lg:grid-cols-2">
           {/* Most Searched */}
           {isLoading ? (
             <>
@@ -334,8 +334,8 @@ export default function AdminDashboard() {
             </>
           ) : (
             <>
-          <div className="bg-white rounded-xl p-6 shadow-md border border-gray-200">
-            <div className="flex justify-between items-center mb-6">
+          <div className="p-6 bg-white border border-gray-200 shadow-md rounded-xl">
+            <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-bold text-gray-900">Most Searched</h2>
               <select className="text-gray-500 text-sm bg-gray-100 border border-gray-300 rounded-lg px-3 py-1.5">
                 <option>This month</option>
@@ -351,9 +351,9 @@ export default function AdminDashboard() {
                 
                 return (
                   <div key={index} className="flex items-center gap-4">
-                    <div className="w-32 text-sm text-gray-700 flex-shrink-0">{item.name}</div>
-                    <div className="flex-1 relative">
-                      <div className="w-full bg-gray-200 rounded h-6">
+                    <div className="w-32 text-sm text-gray-700 shrink-0">{item.name}</div>
+                    <div className="relative flex-1">
+                      <div className="w-full h-6 bg-gray-200 rounded">
                         <div 
                           className={`${barColor} h-6 rounded`}
                           style={{ width: `${logPercentage}%` }}
@@ -364,7 +364,7 @@ export default function AdminDashboard() {
                 )
               })}
             </div>
-            <div className="mt-6 pt-4 border-t border-gray-200 flex justify-between text-xs text-gray-500 text-xs">
+            <div className="flex justify-between pt-4 mt-6 text-xs text-gray-500 border-t border-gray-200">
               <span>0</span>
               <span>1,000</span>
               <span>10,000</span>
@@ -374,8 +374,8 @@ export default function AdminDashboard() {
           </div>
 
           {/* Views Growth */}
-          <div className="bg-white rounded-xl p-6 shadow-md border border-gray-200">
-            <div className="flex justify-between items-center mb-6">
+          <div className="p-6 bg-white border border-gray-200 shadow-md rounded-xl">
+            <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-bold text-gray-900">Views Growth</h2>
               <select className="text-gray-500 text-sm bg-gray-100 border border-gray-300 rounded-lg px-3 py-1.5">
                 <option>Monthly</option>
@@ -429,7 +429,7 @@ export default function AdminDashboard() {
         </div>
 
         {/* Bottom Row */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           {/* Categories */}
           {isLoading ? (
             <>
@@ -439,10 +439,10 @@ export default function AdminDashboard() {
             </>
           ) : (
             <>
-          <div className="bg-white rounded-xl p-6 shadow-md border border-gray-200">
-            <h2 className="text-xl font-bold text-gray-900 mb-6">Categories</h2>
+          <div className="p-6 bg-white border border-gray-200 shadow-md rounded-xl">
+            <h2 className="mb-6 text-xl font-bold text-gray-900">Categories</h2>
             <div className="flex items-center gap-8">
-              <div className="relative w-64 h-64 flex-shrink-0">
+              <div className="relative w-64 h-64 shrink-0">
                 {(() => {
                   const centerX = 150
                   const centerY = 135
@@ -587,8 +587,8 @@ export default function AdminDashboard() {
           </div>
 
           {/* Most Viewed */}
-          <div className="bg-white rounded-xl p-6 shadow-md border border-gray-200">
-            <div className="flex justify-between items-center mb-6">
+          <div className="p-6 bg-white border border-gray-200 shadow-md rounded-xl">
+            <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-bold text-gray-900">Most Viewed</h2>
               <select className="text-gray-500 text-sm bg-gray-100 border border-gray-300 rounded-lg px-3 py-1.5">
                 <option>This month</option>
@@ -597,16 +597,16 @@ export default function AdminDashboard() {
             <div className="space-y-4">
               {[1, 2, 3, 4, 5].map((num) => (
                 <div key={num} className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-purple-700 rounded-full flex items-center justify-center text-white text-lg font-bold flex-shrink-0">
+                  <div className="flex items-center justify-center w-10 h-10 text-lg font-bold text-white bg-purple-700 rounded-full shrink-0">
                     {num}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-gray-900 mb-1">
+                    <p className="mb-1 text-sm font-medium text-gray-900">
                       {mostViewed[0].title}
                     </p>
                     <p className="text-xs text-gray-500">{mostViewed[0].authors}</p>
                   </div>
-                  <div className="flex-shrink-0 text-right">
+                  <div className="text-right shrink-0">
                     <p className="text-sm font-bold text-purple-700">{mostViewed[0].views}</p>
                     <p className="text-xs text-purple-500">Views</p>
                   </div>
@@ -616,8 +616,8 @@ export default function AdminDashboard() {
           </div>
 
           {/* Most Searched */}
-          <div className="bg-white rounded-xl p-6 shadow-md border border-gray-200">
-            <div className="flex justify-between items-center mb-6">
+          <div className="p-6 bg-white border border-gray-200 shadow-md rounded-xl">
+            <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-bold text-gray-900">Most Searched</h2>
               <select className="text-gray-500 text-sm bg-gray-100 border border-gray-300 rounded-lg px-3 py-1.5">
                 <option>This month</option>
@@ -626,16 +626,16 @@ export default function AdminDashboard() {
             <div className="space-y-4">
               {[1, 2, 3, 4, 5].map((num) => (
                 <div key={num} className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-purple-700 rounded-full flex items-center justify-center text-white text-lg font-bold flex-shrink-0">
+                  <div className="flex items-center justify-center w-10 h-10 text-lg font-bold text-white bg-purple-700 rounded-full shrink-0">
                     {num}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-gray-900 mb-1">
+                    <p className="mb-1 text-sm font-medium text-gray-900">
                       {mostViewed[0].title}
                     </p>
                     <p className="text-xs text-gray-500">{mostViewed[0].authors}</p>
                   </div>
-                  <div className="flex-shrink-0 text-right">
+                  <div className="text-right shrink-0">
                     <p className="text-sm font-bold text-purple-700">{mostViewed[0].views}</p>
                     <p className="text-xs text-purple-500">Views</p>
                   </div>
@@ -655,22 +655,22 @@ export default function AdminDashboard() {
           onClick={() => setIsLogoutModalOpen(false)}
         >
           <div 
-            className="bg-white rounded-xl shadow-2xl p-8 w-full max-w-md"
+            className="w-full max-w-md p-8 bg-white shadow-2xl rounded-xl"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-center mb-4">
-              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center">
+              <div className="flex items-center justify-center w-16 h-16 bg-purple-100 rounded-full">
                 <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                 </svg>
               </div>
             </div>
-            <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-purple-600 to-purple-800 text-center mb-2">Confirm Logout</h2>
-            <p className="text-gray-600 text-center mb-6">Are you sure you want to logout?</p>
+            <h2 className="mb-2 text-2xl font-bold text-center text-transparent bg-clip-text bg-linear-to-r from-purple-400 via-purple-600 to-purple-800">Confirm Logout</h2>
+            <p className="mb-6 text-center text-gray-600">Are you sure you want to logout?</p>
             <div className="flex gap-3">
               <button
                 onClick={() => setIsLogoutModalOpen(false)}
-                className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
+                className="flex-1 px-4 py-2 text-gray-700 transition-colors border border-gray-300 rounded-lg hover:bg-gray-50"
               >
                 Cancel
               </button>
@@ -682,7 +682,7 @@ export default function AdminDashboard() {
                       navigate('/')
                     }, 1500)
                   }}
-                  className="flex-1 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors"
+                  className="flex-1 px-4 py-2 text-white transition-colors bg-purple-600 rounded-lg hover:bg-purple-700"
                 >
                   Logout
                 </button>
@@ -693,7 +693,7 @@ export default function AdminDashboard() {
 
       {/* Logout Loading Overlay */}
       {isLoggingOut && (
-        <div className="fixed inset-0 z-[60] min-h-screen flex items-center justify-center">
+        <div className="fixed inset-0 flex items-center justify-center min-h-screen z-60">
           <div className="absolute inset-0 bg-white" aria-hidden />
           <div 
             className="absolute inset-0 opacity-100" 
@@ -708,15 +708,15 @@ export default function AdminDashboard() {
           <div className="relative z-10 text-center">
             <div className="inline-flex flex-col items-center gap-4">
               <div className="relative">
-                <svg className="animate-spin h-12 w-12 text-purple-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <svg className="w-12 h-12 text-purple-600 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
                 <div className="absolute inset-0 rounded-full bg-purple-600/20 blur-xl"></div>
               </div>
               <div className="space-y-1">
-                <span className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent block">Logging out...</span>
-                <span className="text-sm text-gray-500 block">Redirecting to landing page</span>
+                <span className="block text-2xl font-bold text-transparent bg-linear-to-r from-purple-600 to-indigo-600 bg-clip-text">Logging out...</span>
+                <span className="block text-sm text-gray-500">Redirecting to landing page</span>
               </div>
             </div>
           </div>

@@ -3,21 +3,21 @@ import { useState } from "react"
 import Logo from "../../assets/images/Logo CIT.png"
 import AdminLogin from "../Admin/AdminLogin"
 
- export default function Navbar() {
+ export default function Navbar({logout}) {
    const location = useLocation()
-   const active = location.pathname === "/" ? "home" : location.pathname === "/capstone" ? "capstone" : location.pathname === "/about" ? "about" : ""
+   const active = location.pathname === "/home" ? "home" : location.pathname === "/capstone" ? "capstone" : location.pathname === "/about" ? "about" : ""
    const [isLoginOpen, setIsLoginOpen] = useState(false)
 
    return (
         <>
-        <header className="fixed top-0 inset-x-0 z-50 bg-white/60 backdrop-blur-md supports-[backdrop-filter]:bg-white/40">
-            <nav className="mx-auto max-w-7xl grid grid-cols-3 items-center px-6 h-12 md:h-22">
-                <Link to="/" className="relative flex items-center w-60 md:w-72 h-full overflow-visible">
-                    <img src={Logo} alt="CIT Repository" className="absolute left-0 top-1/2 -translate-y-1/2 mt-1 md:mt-1 h-32 md:h-40 w-auto" />
+        <header className="fixed inset-x-0 top-0 z-50 bg-white backdrop-blur-md ">
+            <nav className="grid items-center h-12 grid-cols-3 px-6 mx-auto max-w-7xl md:h-22">
+                <Link to="/" className="relative flex items-center h-full overflow-visible w-60 md:w-72">
+                    <img src={Logo} alt="CIT Repository" className="absolute left-0 w-auto h-32 mt-1 -translate-y-1/2 top-1/2 md:mt-1 md:h-40" />
                  </Link>
-                 <ul className="hidden md:flex items-center justify-center gap-10 text-sm font-medium text-gray-700">
+                 <ul className="items-center justify-center hidden gap-10 text-sm font-medium text-gray-700 md:flex">
                     <li className="relative">
-                      <Link to="/" aria-current={active === "home" ? "page" : undefined} className={(active === "home" ? "text-indigo-600 " : "text-gray-700 hover:text-gray-900 ") + "transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 rounded-sm px-1 block"}>
+                      <Link to="/home" aria-current={active === "home" ? "page" : undefined} className={(active === "home" ? "text-indigo-600 " : "text-gray-700 hover:text-gray-900 ") + "transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 rounded-sm px-1 block"}>
                         Home
                         {active === "home" && <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-indigo-600 -mb-2"></span>}
                       </Link>
@@ -35,12 +35,12 @@ import AdminLogin from "../Admin/AdminLogin"
                       </Link>
                     </li>
                 </ul>
-                <div className="hidden md:flex items-center justify-end w-60 md:w-72">
-                  <button 
-                    onClick={() => setIsLoginOpen(true)}
-                    className="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-6 py-2 rounded-full transition-colors shadow-md hover:shadow-lg"
+                <div className="items-center justify-end hidden md:flex w-60 md:w-72">
+                  <button
+                    onClick={logout}
+                    className="px-6 py-2 font-semibold text-white transition-colors bg-purple-600 rounded-full shadow-md cursor-pointer hover:bg-purple-700 hover:shadow-lg"
                   >
-                    Login
+                    Log Out
                   </button>
                 </div>
             </nav>

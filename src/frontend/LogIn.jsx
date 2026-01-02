@@ -1,0 +1,115 @@
+import Logo from "../assets/images/Logo CIT.png";
+import { Link } from "react-router-dom";
+import { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import useAnimatedToggle from "../hooks/useAnimatedToogle";
+import ForgotPassword from "./ForgotPassword";
+import VerificationCode from "./VerificationCode";
+import ResetPassword from "./ResetPassword";
+import "../animate.css";
+function LogIn(){
+    const [studentNumber, setStudentNumber] = useState("");
+    const [password, setPassword] = useState("");
+    const [role, setRole] = useState("admin");
+    const [email, setEmail] = useState("");
+    
+    const forgotPassword = useAnimatedToggle();
+    const forgotPasswordRef = useRef(null);
+
+    const verification = useAnimatedToggle();
+    const verificationRef = useRef(null);
+    
+    const resetPassword = useAnimatedToggle();
+    const resetPasswordRef = useRef(null);
+    
+    const [isLoading, setIsLoading] = useState(false)
+    const navigate = useNavigate();
+
+
+    
+    const handleLogIn = async (e) => {
+    e.preventDefault()
+    if (studentNumber && password) {
+      setIsLoading(true)
+      await new Promise(resolve => setTimeout(resolve, 1500))
+      setIsLoading(false)
+      if(role === "ad"){
+        navigate('/admin/dashboard'); 
+      }else{
+        navigate('/home');
+      }
+    }
+  }
+
+    return(
+        <>
+        {forgotPassword.isVisible &&(
+            <div className="inset-0 absolute flex items-center justify-center z-20 bg-[#F0F0F0]">
+                <ForgotPassword emailToSend={setEmail} reset={resetPassword.toggle} ref={forgotPasswordRef} onAnimationEnd={forgotPassword.handleEnd} animate={forgotPassword.animation} onClose={()=>forgotPassword.setAnimation("fade-out")}  />
+            </div>
+        )}
+         {verification.isVisible &&(
+            <div className="inset-0 absolute flex items-center justify-center z-20 bg-[#F0F0F0]">
+                <VerificationCode resend={forgotPassword.toggle} email={email} ref={verificationRef} onAnimationEnd={verification.handleEnd} animate={verification.animation} onClose={()=>verification.setAnimation("fade-out")}  />
+            </div>
+        )}
+         {resetPassword.isVisible &&(
+            <div className="inset-0 absolute flex items-center justify-center z-20 bg-[#F0F0F0]">
+                <ResetPassword verification={verification.toggle}  ref={resetPasswordRef} onAnimationEnd={resetPassword.handleEnd} animate={resetPassword.animation} onClose={()=>resetPassword.setAnimation("fade-out")}  />
+            </div>
+        )}
+        <div className="relative flex items-center w-full h-screen bg-white">
+            <div className="fixed top-0 z-30 w-full h-20 bg-white ">
+                <img src={Logo} className="absolute w-40 -translate-y-1/2 left-5 top-1/2" alt="" />
+                <Link to="/signup"  className="absolute flex items-center h-9 px-8 -translate-y-1/2 border cursor-pointer bg-white poppins-medium border-[#754BA1] text-sm font-semibold right-5 top-1/2 rounded-full">Sign Up</Link>
+            </div>
+            <div className="flex flex-col items-center w-full ">
+                <div className="w-full">
+                     <h1 className="text-4xl poppins-medium text-center text-[#830FAD]">Log In Your Account</h1>
+                    <h3 className="text-lg text-center poppins-regular">Welcome back!</h3> 
+                </div>
+               
+                <form onSubmit={handleLogIn} action="" className="flex flex-col gap-8 mt-10 text-md poppins-regular w-100">
+                    <div className="w-full">
+                        <label className="" htmlFor="">Student Number/IE</label><br />
+                        <input value={studentNumber} required onChange={(e)=> setStudentNumber(e.target.value)} type="text" className="w-full border-b mt-2 focus:outline-none border-[#0000004d]" placeholder="Enter Your Student Number" />
+                    </div>
+                     <div className="w-full">
+                        <label className="" htmlFor="">Password</label><br />
+                        <input value={password} required onChange={(e)=> setPassword(e.target.value)} type="password" className="w-full border-b mt-2 focus:outline-none border-[#0000004d]" placeholder="Enter your Password" />
+                        <p onClick={forgotPassword.toggle} className="mt-2 text-xs text-end poppins-regular text-[#830FAD] cursor-pointer hover:text-black transition duration-300">Forgot Password?</p>
+
+                    </div>
+                     <div className="w-full px-2">
+                        <button
+                            type="submit"
+                            disabled={isLoading}
+                            className="w-full bg-[#754BA1] hover:from-purple-700 hover:via-purple-800 hover:to-purple-900 text-white py-3 rounded-full cursor-pointer font-semibold transition-all duration-300 shadow-lg hover:shadow-purple-500/50 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02]">
+                            {isLoading ? (
+                            <span className="flex items-center justify-center gap-2">
+                                <svg className="w-5 h-5 text-white animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                                Logging in...
+                            </span>
+                            ) : (
+                            'Login'
+                            )}
+                        </button>
+                        <p className="mt-2 text-sm text-center poppins-regular">Don't have an account? <Link to ="/signup" className="text-[#830FAD]">Sign Up</Link></p>
+                    </div>
+                </form>
+            </div>
+            <footer className="py-3 z-30 mt-auto absolute bottom-0 w-full text-white bg-linear-to-r from-[#CD9EFF] via-[#7A55A3] to-[#4D0699]">
+                <div className="px-6 mx-auto text-center max-w-7xl">
+                    <p className="text-sm md:text-base">
+                        IT Capstone Repository System © 2025 College of Information Technology - All Rights Reserved.
+                    </p>
+                </div>
+            </footer>
+        </div>
+        </>
+    );
+}
+export default LogIn;

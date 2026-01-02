@@ -244,15 +244,15 @@ export default function CapstoneProjects() {
   // Skeleton Components
   const SkeletonShimmer = ({ className = "" }) => (
     <div className={`relative overflow-hidden ${className}`}>
-      <div className="absolute inset-0 -translate-x-full animate-shimmer bg-gradient-to-r from-transparent via-white/60 to-transparent"></div>
+      <div className="absolute inset-0 -translate-x-full animate-shimmer bg-linear-to-r from-transparent via-white/60 to-transparent"></div>
     </div>
   )
 
   const SkeletonRow = () => (
     <tr className="border-b border-gray-100">
       {[1, 2, 3, 4, 5, 6].map((num) => (
-        <td key={num} className="py-3 px-4">
-          <div className="h-4 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded relative overflow-hidden">
+        <td key={num} className="px-4 py-3">
+          <div className="relative h-4 overflow-hidden rounded bg-linear-to-r from-gray-200 via-gray-100 to-gray-200">
             <SkeletonShimmer />
           </div>
         </td>
@@ -263,21 +263,21 @@ export default function CapstoneProjects() {
   const SkeletonControls = () => (
     <div className="flex flex-wrap items-center gap-4 mb-6">
       <div className="flex items-center gap-3">
-        <div className="h-4 w-12 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded relative overflow-hidden">
+        <div className="relative w-12 h-4 overflow-hidden rounded bg-linear-to-r from-gray-200 via-gray-100 to-gray-200">
           <SkeletonShimmer />
         </div>
-        <div className="h-10 w-24 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded-lg relative overflow-hidden">
+        <div className="relative w-24 h-10 overflow-hidden rounded-lg bg-linear-to-r from-gray-200 via-gray-100 to-gray-200">
           <SkeletonShimmer />
         </div>
-        <div className="h-10 w-32 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded-lg relative overflow-hidden">
+        <div className="relative w-32 h-10 overflow-hidden rounded-lg bg-linear-to-r from-gray-200 via-gray-100 to-gray-200">
           <SkeletonShimmer />
         </div>
       </div>
-      <div className="ml-auto flex items-center gap-3">
-        <div className="w-10 h-10 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded-lg relative overflow-hidden">
+      <div className="flex items-center gap-3 ml-auto">
+        <div className="relative w-10 h-10 overflow-hidden rounded-lg bg-linear-to-r from-gray-200 via-gray-100 to-gray-200">
           <SkeletonShimmer />
         </div>
-        <div className="h-10 w-64 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded-lg relative overflow-hidden">
+        <div className="relative w-64 h-10 overflow-hidden rounded-lg bg-linear-to-r from-gray-200 via-gray-100 to-gray-200">
           <SkeletonShimmer />
         </div>
       </div>
@@ -285,13 +285,13 @@ export default function CapstoneProjects() {
   )
 
   return (
-    <div className="min-h-screen bg-gray-50 flex">
+    <div className="flex min-h-screen bg-gray-50">
       {/* Sidebar */}
-      <aside className="w-20 bg-purple-900 flex flex-col items-center py-6 gap-6 h-screen fixed left-0 top-0 overflow-hidden">
+      <aside className="fixed top-0 left-0 flex flex-col items-center w-20 h-screen gap-6 py-6 overflow-hidden bg-purple-900">
         {/* Dashboard Icon */}
         <div 
           onClick={() => navigate('/admin/dashboard')}
-          className="w-8 h-8 flex items-center justify-center text-white cursor-pointer hover:bg-purple-800 rounded-lg transition-colors"
+          className="flex items-center justify-center w-8 h-8 text-white transition-colors rounded-lg cursor-pointer hover:bg-purple-800"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
@@ -301,7 +301,7 @@ export default function CapstoneProjects() {
         {/* Document Icon */}
         <div 
           onClick={() => navigate('/admin/capstone-projects')}
-          className="w-8 h-8 flex items-center justify-center text-white cursor-pointer hover:bg-purple-800 rounded-lg transition-colors bg-purple-800"
+          className="flex items-center justify-center w-8 h-8 text-white transition-colors bg-purple-800 rounded-lg cursor-pointer hover:bg-purple-800"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -311,7 +311,7 @@ export default function CapstoneProjects() {
         {/* Users/People Icon */}
         <div 
           onClick={() => navigate('/admin/account-management')}
-          className="w-8 h-8 flex items-center justify-center text-white cursor-pointer hover:bg-purple-800 rounded-lg transition-colors"
+          className="flex items-center justify-center w-8 h-8 text-white transition-colors rounded-lg cursor-pointer hover:bg-purple-800"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
@@ -319,18 +319,18 @@ export default function CapstoneProjects() {
         </div>
 
         {/* User Settings Icon */}
-        <div className="w-8 h-8 flex items-center justify-center text-white cursor-pointer hover:bg-purple-800 rounded-lg transition-colors relative">
+        <div className="relative flex items-center justify-center w-8 h-8 text-white transition-colors rounded-lg cursor-pointer hover:bg-purple-800">
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
           </svg>
-          <svg className="w-3 h-3 absolute bottom-0 right-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="absolute bottom-0 right-0 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
           </svg>
         </div>
 
         {/* Logout Icon */}
-        <div className="mt-auto w-8 h-8 flex items-center justify-center text-white cursor-pointer hover:bg-purple-800 rounded-lg transition-colors" onClick={() => setIsLogoutModalOpen(true)}>
+        <div className="flex items-center justify-center w-8 h-8 mt-auto text-white transition-colors rounded-lg cursor-pointer hover:bg-purple-800" onClick={() => setIsLogoutModalOpen(true)}>
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
           </svg>
@@ -341,14 +341,14 @@ export default function CapstoneProjects() {
       <main className="flex-1 p-8 ml-20">
         {/* Header */}
         <div className="mb-6">
-          <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-purple-600 to-purple-800">Capstone</span>{' '}
+          <h1 className="text-4xl font-extrabold leading-tight md:text-5xl">
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 via-purple-600 to-purple-800">Capstone</span>{' '}
             <span className="text-gray-900">Projects</span>
           </h1>
         </div>
 
         {/* Controls and Table Container */}
-        <div className="bg-white rounded-xl shadow-md p-6">
+        <div className="p-6 bg-white shadow-md rounded-xl">
           {/* Filters and Search */}
           {isLoading ? (
             <SkeletonControls />
@@ -360,7 +360,7 @@ export default function CapstoneProjects() {
                 <select
                   value={filterType}
                   onChange={(e) => setFilterType(e.target.value)}
-                  className="px-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  className="px-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                 >
                   <option value="All">All</option>
                   <option value="Recent">Recent</option>
@@ -369,7 +369,7 @@ export default function CapstoneProjects() {
                 <select
                   value={categoryFilter}
                   onChange={(e) => setCategoryFilter(e.target.value)}
-                  className="px-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  className="px-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                 >
                   <option value="Category">Category</option>
                   <option value="Web Application">Web Application</option>
@@ -380,10 +380,10 @@ export default function CapstoneProjects() {
               </div>
 
               {/* Add Button and Search */}
-              <div className="ml-auto flex items-center gap-3">
+              <div className="flex items-center gap-3 ml-auto">
                 <button
                   onClick={handleAdd}
-                  className="w-10 h-10 bg-purple-600 hover:bg-purple-700 text-white rounded-lg flex items-center justify-center transition-colors shadow-md hover:shadow-lg"
+                  className="flex items-center justify-center w-10 h-10 text-white transition-colors bg-purple-600 rounded-lg shadow-md hover:bg-purple-700 hover:shadow-lg"
                 >
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -395,9 +395,9 @@ export default function CapstoneProjects() {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Search capstone..."
-                    className="pl-4 pr-10 py-2 border border-gray-300 rounded-lg text-sm w-64 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-64 py-2 pl-4 pr-10 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                   />
-                  <svg className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="absolute w-5 h-5 text-gray-400 -translate-y-1/2 right-3 top-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
                 </div>
@@ -410,12 +410,12 @@ export default function CapstoneProjects() {
             <table className="w-full">
               <thead>
                 <tr className="border-b border-gray-200">
-                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Capstone ID</th>
-                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Title</th>
-                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Author</th>
-                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Category</th>
-                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Year</th>
-                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Action</th>
+                  <th className="px-4 py-3 text-sm font-semibold text-left text-gray-700">Capstone ID</th>
+                  <th className="px-4 py-3 text-sm font-semibold text-left text-gray-700">Title</th>
+                  <th className="px-4 py-3 text-sm font-semibold text-left text-gray-700">Author</th>
+                  <th className="px-4 py-3 text-sm font-semibold text-left text-gray-700">Category</th>
+                  <th className="px-4 py-3 text-sm font-semibold text-left text-gray-700">Year</th>
+                  <th className="px-4 py-3 text-sm font-semibold text-left text-gray-700">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -429,17 +429,17 @@ export default function CapstoneProjects() {
                   </>
                 ) : (
                   paginatedCapstones.map((capstone, index) => (
-                    <tr key={capstone.id} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                      <td className="py-3 px-4 text-sm text-gray-900">{capstone.id}</td>
-                      <td className="py-3 px-4 text-sm text-gray-900">{capstone.title}</td>
-                      <td className="py-3 px-4 text-sm text-gray-700">{capstone.author}</td>
-                      <td className="py-3 px-4 text-sm text-gray-700">{capstone.category}</td>
-                      <td className="py-3 px-4 text-sm text-gray-700">{capstone.year}</td>
-                      <td className="py-3 px-4">
+                    <tr key={capstone.id} className="transition-colors border-b border-gray-100 hover:bg-gray-50">
+                      <td className="px-4 py-3 text-sm text-gray-900">{capstone.id}</td>
+                      <td className="px-4 py-3 text-sm text-gray-900">{capstone.title}</td>
+                      <td className="px-4 py-3 text-sm text-gray-700">{capstone.author}</td>
+                      <td className="px-4 py-3 text-sm text-gray-700">{capstone.category}</td>
+                      <td className="px-4 py-3 text-sm text-gray-700">{capstone.year}</td>
+                      <td className="px-4 py-3">
                         <div className="flex items-center gap-3">
                           <button
                             onClick={() => handleEdit(capstone)}
-                            className="text-purple-600 hover:text-purple-700 transition-colors"
+                            className="text-purple-600 transition-colors hover:text-purple-700"
                           >
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
@@ -447,7 +447,7 @@ export default function CapstoneProjects() {
                           </button>
                           <button
                             onClick={() => handleDelete(capstone.id)}
-                            className="text-red-500 hover:text-red-600 transition-colors"
+                            className="text-red-500 transition-colors hover:text-red-600"
                           >
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -464,23 +464,23 @@ export default function CapstoneProjects() {
 
           {/* Pagination */}
           {!isLoading && (
-            <div className="flex items-center justify-center mt-6 gap-2">
+            <div className="flex items-center justify-center gap-2 mt-6">
               <button
                 onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
                 disabled={currentPage === 1}
-                className="p-2 text-purple-600 hover:text-purple-700 disabled:text-gray-400 disabled:cursor-not-allowed transition-colors"
+                className="p-2 text-purple-600 transition-colors hover:text-purple-700 disabled:text-gray-400 disabled:cursor-not-allowed"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </svg>
               </button>
-              <span className="text-sm text-gray-700 px-4">
+              <span className="px-4 text-sm text-gray-700">
                 {currentPage} of {totalFilteredPages}
               </span>
               <button
                 onClick={() => setCurrentPage(prev => Math.min(totalFilteredPages, prev + 1))}
                 disabled={currentPage >= totalFilteredPages}
-                className="p-2 text-purple-600 hover:text-purple-700 disabled:text-gray-400 disabled:cursor-not-allowed transition-colors"
+                className="p-2 text-purple-600 transition-colors hover:text-purple-700 disabled:text-gray-400 disabled:cursor-not-allowed"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -497,16 +497,16 @@ export default function CapstoneProjects() {
             onClick={() => setIsChoiceModalOpen(false)}
           >
             <div 
-              className="bg-white rounded-xl shadow-2xl p-8 w-full max-w-md"
+              className="w-full max-w-md p-8 bg-white shadow-2xl rounded-xl"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-purple-600 to-purple-800">
+                <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-linear-to-r from-purple-400 via-purple-600 to-purple-800">
                   Add Capstone
                 </h2>
                 <button
                   onClick={() => setIsChoiceModalOpen(false)}
-                  className="text-gray-400 hover:text-gray-600 transition-colors"
+                  className="text-gray-400 transition-colors hover:text-gray-600"
                 >
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -517,7 +517,7 @@ export default function CapstoneProjects() {
               <div className="space-y-3">
                 <button
                   onClick={() => handleChoiceSelect('manual')}
-                  className="w-full flex items-center gap-3 px-6 py-4 bg-purple-600 hover:bg-purple-700 text-white rounded-xl transition-colors shadow-md hover:shadow-lg"
+                  className="flex items-center w-full gap-3 px-6 py-4 text-white transition-colors bg-purple-600 shadow-md hover:bg-purple-700 rounded-xl hover:shadow-lg"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
@@ -526,7 +526,7 @@ export default function CapstoneProjects() {
                 </button>
                 <button
                   onClick={() => handleChoiceSelect('bulk')}
-                  className="w-full flex items-center gap-3 px-6 py-4 bg-purple-600 hover:bg-purple-700 text-white rounded-xl transition-colors shadow-md hover:shadow-lg"
+                  className="flex items-center w-full gap-3 px-6 py-4 text-white transition-colors bg-purple-600 shadow-md hover:bg-purple-700 rounded-xl hover:shadow-lg"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
@@ -545,7 +545,7 @@ export default function CapstoneProjects() {
             onClick={handleModalClose}
           >
             <div 
-              className="bg-white rounded-xl shadow-2xl p-8 w-full max-w-lg"
+              className="w-full max-w-lg p-8 bg-white shadow-2xl rounded-xl"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between mb-6">
@@ -565,7 +565,7 @@ export default function CapstoneProjects() {
 
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block mb-2 text-sm font-medium text-gray-700">
                     Title <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -579,7 +579,7 @@ export default function CapstoneProjects() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block mb-2 text-sm font-medium text-gray-700">
                     Authors <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -594,7 +594,7 @@ export default function CapstoneProjects() {
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block mb-2 text-sm font-medium text-gray-700">
                       Category <span className="text-red-500">*</span>
                     </label>
                     <select
@@ -612,7 +612,7 @@ export default function CapstoneProjects() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block mb-2 text-sm font-medium text-gray-700">
                       Year <span className="text-red-500">*</span>
                     </label>
                     <select
@@ -632,7 +632,7 @@ export default function CapstoneProjects() {
 
                 {/* File Upload */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block mb-2 text-sm font-medium text-gray-700">
                     File <span className="text-red-500">*</span>
                   </label>
                   <div className="relative">
@@ -645,12 +645,12 @@ export default function CapstoneProjects() {
                     />
                     <label
                       htmlFor="file-upload"
-                      className="flex flex-col items-center justify-center gap-2 w-full px-4 py-8 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-purple-500 hover:bg-purple-50 transition-colors"
+                      className="flex flex-col items-center justify-center w-full gap-2 px-4 py-8 transition-colors border-2 border-gray-300 border-dashed rounded-lg cursor-pointer hover:border-purple-500 hover:bg-purple-50"
                     >
                       <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                       </svg>
-                      <span className="text-sm text-gray-600 font-medium">Upload Here</span>
+                      <span className="text-sm font-medium text-gray-600">Upload Here</span>
                     </label>
                   </div>
                   {uploadedFile && (
@@ -665,13 +665,13 @@ export default function CapstoneProjects() {
                       setIsModalOpen(false)
                       setUploadType(null)
                     }}
-                    className="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
+                    className="px-6 py-2 text-gray-700 transition-colors border border-gray-300 rounded-lg hover:bg-gray-50"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
-                    className="px-6 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors shadow-md hover:shadow-lg"
+                    className="px-6 py-2 text-white transition-colors bg-purple-600 rounded-lg shadow-md hover:bg-purple-700 hover:shadow-lg"
                   >
                     Save
                   </button>
@@ -688,7 +688,7 @@ export default function CapstoneProjects() {
             onClick={handleModalClose}
           >
             <div 
-              className="bg-white rounded-xl shadow-2xl p-8 w-full max-w-lg"
+              className="w-full max-w-lg p-8 bg-white shadow-2xl rounded-xl"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between mb-6">
@@ -718,21 +718,21 @@ export default function CapstoneProjects() {
                   />
                   <label
                     htmlFor="bulk-file-upload"
-                    className="flex flex-col items-center justify-center gap-4 w-full px-4 py-16 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-purple-500 hover:bg-purple-50 transition-colors"
+                    className="flex flex-col items-center justify-center w-full gap-4 px-4 py-16 transition-colors border-2 border-gray-300 border-dashed rounded-lg cursor-pointer hover:border-purple-500 hover:bg-purple-50"
                   >
                     <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                     </svg>
                     <div className="text-center">
                       <p className="text-sm font-medium text-gray-700">Drag and Drop files here.</p>
-                      <p className="text-xs text-gray-500 mt-1">Only accept PDF & CSV files.</p>
+                      <p className="mt-1 text-xs text-gray-500">Only accept PDF & CSV files.</p>
                     </div>
                   </label>
                   {bulkFiles.length > 0 && (
                     <div className="mt-4 space-y-2">
                       <p className="text-sm font-medium text-gray-700">Selected files ({bulkFiles.length}):</p>
                       {bulkFiles.map((file, index) => (
-                        <div key={index} className="flex items-center gap-2 text-sm text-gray-600 bg-gray-50 px-3 py-2 rounded">
+                        <div key={index} className="flex items-center gap-2 px-3 py-2 text-sm text-gray-600 rounded bg-gray-50">
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                           </svg>
@@ -750,13 +750,13 @@ export default function CapstoneProjects() {
                       setIsModalOpen(false)
                       setUploadType(null)
                     }}
-                    className="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
+                    className="px-6 py-2 text-gray-700 transition-colors border border-gray-300 rounded-lg hover:bg-gray-50"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
-                    className="px-6 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors shadow-md hover:shadow-lg"
+                    className="px-6 py-2 text-white transition-colors bg-purple-600 rounded-lg shadow-md hover:bg-purple-700 hover:shadow-lg"
                   >
                     Save
                   </button>
@@ -773,7 +773,7 @@ export default function CapstoneProjects() {
             onClick={handleModalClose}
           >
             <div 
-              className="bg-white rounded-xl shadow-2xl p-8 w-full max-w-lg"
+              className="w-full max-w-lg p-8 bg-white shadow-2xl rounded-xl"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between mb-6">
@@ -793,7 +793,7 @@ export default function CapstoneProjects() {
 
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block mb-2 text-sm font-medium text-gray-700">
                     Title <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -806,7 +806,7 @@ export default function CapstoneProjects() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block mb-2 text-sm font-medium text-gray-700">
                     Author <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -821,7 +821,7 @@ export default function CapstoneProjects() {
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block mb-2 text-sm font-medium text-gray-700">
                       Category <span className="text-red-500">*</span>
                     </label>
                     <select
@@ -839,7 +839,7 @@ export default function CapstoneProjects() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block mb-2 text-sm font-medium text-gray-700">
                       Year <span className="text-red-500">*</span>
                     </label>
                     <input
@@ -855,7 +855,7 @@ export default function CapstoneProjects() {
 
                 {/* File Upload */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block mb-2 text-sm font-medium text-gray-700">
                     Upload File <span className="text-red-500">*</span>
                   </label>
                   <div className="relative">
@@ -868,7 +868,7 @@ export default function CapstoneProjects() {
                     />
                     <label
                       htmlFor="file-upload"
-                      className="flex items-center justify-center gap-2 w-full px-4 py-3 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-purple-500 hover:bg-purple-50 transition-colors"
+                      className="flex items-center justify-center w-full gap-2 px-4 py-3 transition-colors border-2 border-gray-300 border-dashed rounded-lg cursor-pointer hover:border-purple-500 hover:bg-purple-50"
                     >
                       <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
@@ -879,7 +879,7 @@ export default function CapstoneProjects() {
                     </label>
                   </div>
                   {uploadedFile && (
-                    <div className="mt-2 flex items-center gap-2 text-sm text-green-600">
+                    <div className="flex items-center gap-2 mt-2 text-sm text-green-600">
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
@@ -891,7 +891,7 @@ export default function CapstoneProjects() {
                           setFormData({ ...formData, file: null })
                           document.getElementById('file-upload').value = ''
                         }}
-                        className="text-red-500 hover:text-red-600 ml-2"
+                        className="ml-2 text-red-500 hover:text-red-600"
                       >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -909,13 +909,13 @@ export default function CapstoneProjects() {
                       setIsModalOpen(false)
                       setUploadType(null)
                     }}
-                    className="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
+                    className="px-6 py-2 text-gray-700 transition-colors border border-gray-300 rounded-lg hover:bg-gray-50"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
-                    className="px-6 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors shadow-md hover:shadow-lg"
+                    className="px-6 py-2 text-white transition-colors bg-purple-600 rounded-lg shadow-md hover:bg-purple-700 hover:shadow-lg"
                   >
                     {formData.id ? 'Update' : 'Add'} Project
                   </button>
@@ -932,22 +932,22 @@ export default function CapstoneProjects() {
             onClick={() => setIsLogoutModalOpen(false)}
           >
             <div 
-              className="bg-white rounded-xl shadow-2xl p-8 w-full max-w-md"
+              className="w-full max-w-md p-8 bg-white shadow-2xl rounded-xl"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-center mb-4">
-                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center">
+                <div className="flex items-center justify-center w-16 h-16 bg-purple-100 rounded-full">
                   <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                   </svg>
                 </div>
               </div>
-              <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-purple-600 to-purple-800 text-center mb-2">Confirm Logout</h2>
-              <p className="text-gray-600 text-center mb-6">Are you sure you want to logout?</p>
+              <h2 className="mb-2 text-2xl font-bold text-center text-transparent bg-clip-text bg-linear-to-r from-purple-400 via-purple-600 to-purple-800">Confirm Logout</h2>
+              <p className="mb-6 text-center text-gray-600">Are you sure you want to logout?</p>
               <div className="flex gap-3">
                 <button
                   onClick={() => setIsLogoutModalOpen(false)}
-                  className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
+                  className="flex-1 px-4 py-2 text-gray-700 transition-colors border border-gray-300 rounded-lg hover:bg-gray-50"
                 >
                   Cancel
                 </button>
@@ -959,7 +959,7 @@ export default function CapstoneProjects() {
                       navigate('/')
                     }, 1500)
                   }}
-                  className="flex-1 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors"
+                  className="flex-1 px-4 py-2 text-white transition-colors bg-purple-600 rounded-lg hover:bg-purple-700"
                 >
                   Logout
                 </button>
@@ -975,21 +975,21 @@ export default function CapstoneProjects() {
             onClick={() => setShowSuccessModal(false)}
           >
             <div 
-              className="bg-white rounded-xl shadow-2xl p-8 w-full max-w-md"
+              className="w-full max-w-md p-8 bg-white shadow-2xl rounded-xl"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-center mb-4">
-                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center">
+                <div className="flex items-center justify-center w-16 h-16 bg-purple-100 rounded-full">
                   <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
               </div>
-              <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-purple-600 to-purple-800 text-center mb-2">Success</h2>
-              <p className="text-gray-600 text-center mb-6">{modalMessage}</p>
+              <h2 className="mb-2 text-2xl font-bold text-center text-transparent bg-clip-text bg-linear-to-r from-purple-400 via-purple-600 to-purple-800">Success</h2>
+              <p className="mb-6 text-center text-gray-600">{modalMessage}</p>
               <button
                 onClick={() => setShowSuccessModal(false)}
-                className="w-full px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors"
+                className="w-full px-4 py-2 text-white transition-colors bg-purple-600 rounded-lg hover:bg-purple-700"
               >
                 OK
               </button>
@@ -1004,21 +1004,21 @@ export default function CapstoneProjects() {
             onClick={() => setShowErrorModal(false)}
           >
             <div 
-              className="bg-white rounded-xl shadow-2xl p-8 w-full max-w-md"
+              className="w-full max-w-md p-8 bg-white shadow-2xl rounded-xl"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-center mb-4">
-                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center">
+                <div className="flex items-center justify-center w-16 h-16 bg-purple-100 rounded-full">
                   <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                   </svg>
                 </div>
               </div>
-              <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-purple-600 to-purple-800 text-center mb-2">Error</h2>
-              <p className="text-gray-600 text-center mb-6">{modalMessage}</p>
+              <h2 className="mb-2 text-2xl font-bold text-center text-transparent bg-clip-text bg-linear-to-r from-purple-400 via-purple-600 to-purple-800">Error</h2>
+              <p className="mb-6 text-center text-gray-600">{modalMessage}</p>
               <button
                 onClick={() => setShowErrorModal(false)}
-                className="w-full px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors"
+                className="w-full px-4 py-2 text-white transition-colors bg-purple-600 rounded-lg hover:bg-purple-700"
               >
                 OK
               </button>
@@ -1036,31 +1036,31 @@ export default function CapstoneProjects() {
             }}
           >
             <div 
-              className="bg-white rounded-xl shadow-2xl p-8 w-full max-w-md"
+              className="w-full max-w-md p-8 bg-white shadow-2xl rounded-xl"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-center mb-4">
-                <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center border-2 border-red-300">
+                <div className="flex items-center justify-center w-16 h-16 bg-red-100 border-2 border-red-300 rounded-full">
                   <svg className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                   </svg>
                 </div>
               </div>
-              <h2 className="text-2xl font-bold text-gray-900 text-center mb-2">Confirm Delete</h2>
-              <p className="text-gray-600 text-center mb-6">Are you sure you want to delete <strong>{deleteItem?.title}</strong>? This action cannot be undone.</p>
+              <h2 className="mb-2 text-2xl font-bold text-center text-gray-900">Confirm Delete</h2>
+              <p className="mb-6 text-center text-gray-600">Are you sure you want to delete <strong>{deleteItem?.title}</strong>? This action cannot be undone.</p>
               <div className="flex gap-3">
                 <button
                   onClick={() => {
                     setIsDeleteModalOpen(false)
                     setDeleteItem(null)
                   }}
-                  className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
+                  className="flex-1 px-4 py-2 text-gray-700 transition-colors border border-gray-300 rounded-lg hover:bg-gray-50"
                 >
                   Cancel
                 </button>
                 <button
                   onClick={confirmDelete}
-                  className="flex-1 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors"
+                  className="flex-1 px-4 py-2 text-white transition-colors bg-red-600 rounded-lg hover:bg-red-700"
                 >
                   Delete
                 </button>
@@ -1071,7 +1071,7 @@ export default function CapstoneProjects() {
 
         {/* Logout Loading Overlay */}
         {isLoggingOut && (
-          <div className="fixed inset-0 z-[60] min-h-screen flex items-center justify-center">
+          <div className="fixed inset-0 flex items-center justify-center min-h-screen z-60">
             <div className="absolute inset-0 bg-white" aria-hidden />
             <div 
               className="absolute inset-0 opacity-100" 
@@ -1086,15 +1086,15 @@ export default function CapstoneProjects() {
             <div className="relative z-10 text-center">
               <div className="inline-flex flex-col items-center gap-4">
                 <div className="relative">
-                  <svg className="animate-spin h-12 w-12 text-purple-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <svg className="w-12 h-12 text-purple-600 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                   </svg>
                   <div className="absolute inset-0 rounded-full bg-purple-600/20 blur-xl"></div>
                 </div>
                 <div className="space-y-1">
-                  <span className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent block">Logging out...</span>
-                  <span className="text-sm text-gray-500 block">Redirecting to landing page</span>
+                  <span className="block text-2xl font-bold text-transparent bg-linear-to-r from-purple-600 to-indigo-600 bg-clip-text">Logging out...</span>
+                  <span className="block text-sm text-gray-500">Redirecting to landing page</span>
                 </div>
               </div>
             </div>
