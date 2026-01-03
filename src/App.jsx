@@ -1,5 +1,6 @@
 ﻿import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from './frontend/Landing Page/Home'
+import Submit from './frontend/Landing Page/Submit'
 import CapstoneSearch from './frontend/Landing Page/CapstoneSearch'
 import AboutUs from './frontend/Landing Page/AboutUs'
 import AdminLoginPage from './frontend/Admin/AdminLoginPage'
@@ -17,7 +18,7 @@ export default function App() {
 				<Route path="/" element={<LogIn />} />
 				<Route path="/signup" element={<SignUp />} />
 
-
+				<Route path="/submit" element={<Submit />} />
 				<Route path="/home" element={<Home />} />
 				<Route path="/capstone" element={<CapstoneSearch />} />
 				<Route path="/about" element={<AboutUs />} />

@@ -5,12 +5,12 @@ import AdminLogin from "../Admin/AdminLogin"
 
  export default function Navbar({logout}) {
    const location = useLocation()
-   const active = location.pathname === "/home" ? "home" : location.pathname === "/capstone" ? "capstone" : location.pathname === "/about" ? "about" : ""
+   const active = location.pathname === "/home" ? "home" : location.pathname === "/capstone" ? "capstone" : location.pathname === "/about" ? "about" : location.pathname === "/submit" ? "submit" :""
    const [isLoginOpen, setIsLoginOpen] = useState(false)
 
    return (
         <>
-        <header className="fixed inset-x-0 top-0 z-50 bg-white backdrop-blur-md ">
+        <header className="fixed inset-x-0 top-0 z-20 bg-white backdrop-blur-md ">
             <nav className="grid items-center h-12 grid-cols-3 px-6 mx-auto max-w-7xl md:h-22">
                 <Link to="/" className="relative flex items-center h-full overflow-visible w-60 md:w-72">
                     <img src={Logo} alt="CIT Repository" className="absolute left-0 w-auto h-32 mt-1 -translate-y-1/2 top-1/2 md:mt-1 md:h-40" />
@@ -26,6 +26,12 @@ import AdminLogin from "../Admin/AdminLogin"
                       <Link to="/capstone" aria-current={active === "capstone" ? "page" : undefined} className={(active === "capstone" ? "text-indigo-600 " : "text-gray-700 hover:text-gray-900 ") + "transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 rounded-sm px-1 block"}>
                         Capstone
                         {active === "capstone" && <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-indigo-600 -mb-2"></span>}
+                      </Link>
+                    </li>
+                    <li className="relative">
+                      <Link to="/submit" aria-current={active === "submit" ? "page" : undefined} className={(active === "submit" ? "text-indigo-600 " : "text-gray-700 hover:text-gray-900 ") + "transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 rounded-sm px-1 block"}>
+                        Submit
+                        {active === "submit" && <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-indigo-600 -mb-2"></span>}
                       </Link>
                     </li>
                     <li className="relative">

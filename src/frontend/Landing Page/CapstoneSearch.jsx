@@ -10,6 +10,15 @@ import Database from "../../assets/images/database.svg"
 import IOT from "../../assets/images/iot.svg"
 import AppDev from "../../assets/images/appdev.svg"
 import Networking from "../../assets/images/networking.svg"
+import Sparkle from "../../assets/images/sparkle.svg"
+import Quote from "../../assets/images/quote.svg"
+import Share from "../../assets/images/share.svg"
+import Save from "../../assets/images/save.svg"
+
+
+
+
+
 
 
 export default function CapstoneSearch() {
@@ -19,6 +28,7 @@ export default function CapstoneSearch() {
     const [currentPage, setCurrentPage] = useState(1)
     const [filterType, setFilterType] = useState("All")
     const [categoryFilter, setCategoryFilter] = useState("Category")
+    const [title, setTitle] = useState("Search Results")
     const totalPages = 30
 
     const navigate = useNavigate()
@@ -96,7 +106,7 @@ export default function CapstoneSearch() {
         },
         {
             id: 4,
-            category: "Information System",
+            category: "Web App",
             icons: Information
             
         },
@@ -154,7 +164,7 @@ export default function CapstoneSearch() {
 
         return filtered
     }
-
+    
     const filteredCards = getFilteredCards()
     // Only show results when there's a search query (filters refine the search results)
     const hasResults = searchQuery.trim() !== "" && filteredCards.length > 0
@@ -167,6 +177,8 @@ export default function CapstoneSearch() {
                 setIsLoading(false)
                 setShowResults(true)
                 setCurrentPage(1)
+                setCategoryFilter("Category");
+                setTitle("Search Results");
             }, 800)
         }
     }
@@ -210,6 +222,40 @@ export default function CapstoneSearch() {
                 setIsLoading(false)
             }, 300)
         }
+    }
+    function handleCategoryCardClick(categoryName) {
+        setIsLoading(true)
+        setShowResults(true)
+        setSearchQuery(categoryName)        // optional: clears search
+        setFilterType("All")
+        setCategoryFilter(categoryName)
+        setCurrentPage(1)
+        setTitle(categoryName)
+
+        setTimeout(() => {
+            setIsLoading(false)
+        }, 500)
+    }
+    const [selectedCard, setSelectedCard] = useState(null)
+    const [generateAI, setGenerateAI] = useState(false);
+    const [views, setViews] = useState(0);
+    
+    
+    const handleGenerateAI = async (e) =>{
+        e.preventDefault();
+        setIsLoading(true)
+        await new Promise(resolve => setTimeout(resolve, 1500))
+        setIsLoading(false)
+        setGenerateAI(true)
+        
+    }
+     const handleShowAbstract = async (e) =>{
+        e.preventDefault();
+        setIsLoading(true)
+        await new Promise(resolve => setTimeout(resolve, 1500))
+        setIsLoading(false)
+        setGenerateAI(false)
+        
     }
 
     return (
@@ -372,7 +418,7 @@ export default function CapstoneSearch() {
                         </div>
                         <div className="grid w-full grid-cols-4 gap-5 mt-5 animate-fade-in-up">
                             {categories.map((c, id) =>(
-                                <div key={id} className="flex relative flex-col cursor-pointer hover:border-[#754BA1] hover:border-3 hover:scale-105 hover:shadow-purple-400 transition duration-500 justify-between w-full h-40 px-5 py-3 bg-white border shadow-lg border-[#00000040] rounded-2xl">
+                                <div   onClick={() => handleCategoryCardClick(c.category)} key={id} className="flex relative flex-col cursor-pointer hover:border-[#754BA1] hover:border-3 hover:scale-105 hover:shadow-purple-400 transition duration-500 justify-between w-full h-40 px-5 py-3 bg-white border shadow-lg border-[#00000040] rounded-2xl">
                                     <h1 className='text-lg poppins-regular'>{c.category}</h1>
                                     <p className='text-2xl'><i className="fa-solid fa-arrow-right"></i></p>
                                     <img src={c.icons} className='absolute bottom-5 right-3 ' alt="" />
@@ -391,7 +437,7 @@ export default function CapstoneSearch() {
                    
                 </section>
                 
-            ) : (
+            ) :  (
                 <div className="flex flex-col min-h-screen bg-white">
                     <section className="relative flex-1 pt-24 pb-16 md:pt-32 animate-fade-in">
                         {/* V9.svg gradient background */}
@@ -407,7 +453,7 @@ export default function CapstoneSearch() {
                         />
                     <div className="relative px-6 mx-auto max-w-7xl">
                             {/* Title */}
-                            <h2 className="mb-8 text-4xl font-extrabold leading-snug text-gray-900 md:text-5xl md:leading-tight">Search Results</h2>
+                            <h2 className="mb-8 text-2xl leading-snug text-gray-900 poppins-semibold md:text-3xl md:leading-tight">{title}</h2>
 
                             {/* Filters and Search Bar */}
                             <div className="flex flex-col gap-4 mb-8 md:flex-row md:items-center md:justify-between">
@@ -449,7 +495,7 @@ export default function CapstoneSearch() {
                                     value={searchQuery}
                                     onChange={handleInputChange}
                                     placeholder="Search capstone..."
-                                        className="w-full rounded-lg border border-gray-300 bg-white pl-10 pr-4 py-2.5 text-sm text-gray-700 placeholder-gray-400 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all"
+                                        className="w-full rounded-full border border-gray-300 bg-white pl-10 pr-4 py-2.5 text-sm text-gray-700 placeholder-gray-400 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all"
                                         onKeyDown={(e) => e.key === 'Enter' && handleResultsSearch(e)}
                                 />
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="absolute w-5 h-5 text-gray-400 transition-colors -translate-y-1/2 pointer-events-none right-3 top-1/2 group-focus-within:text-purple-600">
@@ -474,8 +520,9 @@ export default function CapstoneSearch() {
                                     // Show all matching cards with fade-in animation
                                     filteredCards.map((card, index) => (
                                         <article 
+                                            onClick={() => {setSelectedCard(card); setViews(views + 1); setShowResults("Content")}}
                                             key={card.id} 
-                                            className="p-6 transition-all duration-300 bg-white shadow-sm rounded-xl hover:shadow-md animate-fade-in-card"
+                                            className="p-6 transition-all duration-300 bg-white shadow-sm cursor-pointer rounded-xl hover:shadow-xl hover:scale-103 animate-fade-in-card"
                                             style={{ animationDelay: `${index * 0.1}s` }}
                                         >
                                             {/* Title */}
@@ -585,7 +632,7 @@ export default function CapstoneSearch() {
                 </section>
         
                     {/* Footer */}
-                    <footer className="py-3 mt-auto text-white bg-linear-to-r from-[#CD9EFF] via-[#7A55A3] to-[#4D0699]">
+                    <footer className="py-3 z-20 fixed bottom-0 w-full mt-auto text-white bg-linear-to-r from-[#CD9EFF] via-[#7A55A3] to-[#4D0699]">
                         <div className="px-6 mx-auto text-center max-w-7xl">
                             <p className="text-sm md:text-base">
                                 IT Capstone Repository System © 2025 College of Information Technology - All Rights Reserved.
@@ -594,6 +641,134 @@ export default function CapstoneSearch() {
                     </footer>
                 </div>
             )}
+            {selectedCard && (
+                
+                 <div
+    className="fixed inset-0 z-10 flex flex-col items-center bg-[#F3f3f3] backdrop-blur-sm"
+    onClick={() => setSelectedCard(null)}
+    
+  >
+    <div className="w-full text-[#000000B2] pl-50 text-start">
+    <p className='text-sm mt-28 text-start poppins-regular' >Repository &gt; {selectedCard.category} &gt; {selectedCard.title}</p>
+
+        
+    </div>
+            <div
+            className="relative w-full max-w-6xl p-8 overflow-y-scroll bg-white shadow-2xl h-130 hide-scrollbar rounded-2xl animate-fade-in"
+            onClick={(e) => e.stopPropagation()}
+            >
+                <p className='absolute flex items-baseline gap-2 text-sm bottom-5 right-10 text-[#00000066]'><i class="fa-solid fa-eye"></i>{views}</p>
+            {/* Close Button */}
+            <button
+                onClick={() => setSelectedCard(null)}
+                className="absolute text-gray-400 cursor-pointer top-4 right-4 hover:text-gray-600"
+            >
+                ✕
+            </button>
+
+            {/* Title */}
+            <h2 className="mb-2 text-2xl text-gray-900 poppins-semibold">
+                {selectedCard.title}
+            </h2>
+
+            {/* Author & Year */}
+            <p className="mb-4 text-sm textins-gray-400 poppins-semibold">
+                Authors: <span className='poppins-regular text-md'>{selectedCard.author}</span> <br />
+                Year: <span className='poppins-regular text-md'>{selectedCard.year}</span>
+            </p>
+
+            {/* Category */}
+            <div className="flex flex-wrap gap-2 mt-6 poppins-regular">
+                {selectedCard.tags.map((tag, i) => (
+                <span
+                    key={i}
+                    className="px-3 py-1 text-xs font-semibold text-white bg-[#A16FD6] rounded-full"
+                >
+                    {tag}
+                </span>
+                ))}
+            </div>
+            <div className="flex gap-2 mt-3 text-sm poppins-regular">
+                <div className="flex items-center gap-2 pr-2 border-r-2">
+                    <span>Cite</span>
+                    <img src={Quote} className='w-3' alt="" />
+                </div>
+                <div className="flex items-center gap-2 pr-2 border-r-2 ">
+                    <span>Share</span>
+                    <img src={Share} className='w-3' alt="" />
+                </div>
+                <div className="flex items-center gap-2 ">
+                    <span>Bookmark</span>
+                    <img src={Save} className='w-3' alt="" />
+                </div>
+                
+            </div>
+
+
+            {/* Abstract */}
+            {!generateAI? (
+                <div className="mt-4 poppins-regular">
+                <h3 className="mb-2 text-2xl text-gray-900 poppins-medium">Abstract</h3>
+                <p className="text-sm leading-relaxed text-justify text-gray-700">Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+ Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+
+                </p>
+            </div>
+            ) :(
+            <div className="mt-4 poppins-regular">
+                <h3 className="mb-2 text-2xl text-gray-900 poppins-medium">AI Summary</h3>
+                <p className="text-sm leading-relaxed text-justify text-gray-700">Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+ Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+
+                </p>
+            </div>
+            )}
+
+           
+            {/* Actions */}
+            <div className="flex justify-start gap-3 mt-8">
+                {generateAI ?(
+                    <button onClick={handleShowAbstract} className="flex items-center gap-2 cursor-pointer px-4 py-4 text-sm text-white rounded-full poppins-semibold bg-linear-to-r from-[#AE49D3] via-[#820DAC] to-[#500F68] hover:scale-105 hover:shadow-purple-500 shadow-lg transition duration-500">
+                     {isLoading ? (
+                            <span className="flex items-center justify-center gap-2">
+                                <svg className="w-5 h-5 text-white animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                                Showing Abstract...
+                            </span>
+                            ) : (
+                            <p className='flex items-center gap-2'>
+                                <span>Show Abstract</span> <img src={Sparkle} className='w-5' alt="" />  
+                            </p>
+                            )}
+                </button>
+                    
+                ) : (
+                <button onClick={handleGenerateAI} className="flex items-center gap-2 cursor-pointer px-4 py-4 text-sm text-white rounded-full poppins-semibold bg-linear-to-r from-[#AE49D3] via-[#820DAC] to-[#500F68] hover:scale-105 hover:shadow-purple-500 shadow-lg transition duration-500">
+                     {isLoading ? (
+                            <span className="flex items-center justify-center gap-2">
+                                <svg className="w-5 h-5 text-white animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                                Generating AI Summary...
+                            </span>
+                            ) : (
+                            <p className='flex items-center gap-2'>
+                                <span>Generate AI Summary</span> <img src={Sparkle} className='w-5' alt="" />  
+                            </p>
+                            )}
+                </button>
+                )}
+              
+            </div>
+            </div>
+            </div>
+        )}
+
         </div>
     )
 }

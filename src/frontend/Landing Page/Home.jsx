@@ -7,9 +7,9 @@ import V9Gradient from "../../assets/images/V9.svg"
 export default function Home() {
       const navigate = useNavigate()
       const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
-      const [isLoggingOut, setIsLoggingOut] = useState(false)
+      const [isLoggingOut, setIsLoggingOut] = useState(false);
     
-;	return (
+	return (
         <div className="flex flex-col min-h-screen bg-white">
             <Navbar logout={()=>setIsLogoutModalOpen(true)}/>
             <Hero />
