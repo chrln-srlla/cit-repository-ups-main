@@ -1,9 +1,12 @@
+
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useAdmin } from '../../contexts/AdminContext'
 import V9Gradient from "../../assets/images/V9.svg"
 
 export default function CapstoneProjects() {
   const navigate = useNavigate()
+  const { capstones, addCapstone, updateCapstoneStatus, deleteCapstone, updateCapstone, settings } = useAdmin()
   const [isChoiceModalOpen, setIsChoiceModalOpen] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [uploadType, setUploadType] = useState(null) // 'manual' or 'bulk'
@@ -22,15 +25,10 @@ export default function CapstoneProjects() {
   const [deleteItem, setDeleteItem] = useState(null)
   const [isRefreshing, setIsRefreshing] = useState(false)
   const [isLoggingOut, setIsLoggingOut] = useState(false)
-  
+
   // Sample data
-  const [capstones, setCapstones] = useState([
-    { id: 'CP001', title: 'Capstone Title', author: 'Surname et al.', category: 'Mobile Application', year: '2021' },
-    { id: 'CP002', title: 'Capstone Title', author: 'Surname et al.', category: 'Mobile Application', year: '2021' },
-    { id: 'CP003', title: 'Capstone Title', author: 'Surname et al.', category: 'Web Application', year: '2022' },
-    { id: 'CP004', title: 'Capstone Title', author: 'Surname et al.', category: 'IoT', year: '2021' },
-    { id: 'CP005', title: 'Capstone Title', author: 'Surname et al.', category: 'Networking', year: '2023' },
-  ])
+  // Sample data (REMOVED - now using Context)
+  // const [capstones, setCapstones] = useState([ ... ])
 
   const [formData, setFormData] = useState({
     id: '',
@@ -43,7 +41,7 @@ export default function CapstoneProjects() {
 
   const itemsPerPage = 5
 
-    useEffect(() => {
+  useEffect(() => {
     // Add shimmer animation styles
     const style = document.createElement('style')
     style.textContent = `
@@ -149,10 +147,11 @@ export default function CapstoneProjects() {
       setIsRefreshing(true)
       setIsDeleteModalOpen(false)
       setDeleteItem(null)
-      
+
       // Simulate delete operation with skeleton loading
       setTimeout(() => {
-        setCapstones(capstones.filter(c => c.id !== deleteItem.id))
+        // setCapstones(capstones.filter(c => c.id !== deleteItem.id)) -- Replaced by Context
+        deleteCapstone(deleteItem.id)
         setIsRefreshing(false)
         setModalMessage('Capstone project deleted successfully!')
         setShowSuccessModal(true)
@@ -166,17 +165,19 @@ export default function CapstoneProjects() {
     try {
       setIsRefreshing(true)
       setIsModalOpen(false)
-      
+
       // Simulate save operation with skeleton loading
       setTimeout(() => {
         if (formData.id) {
           // Edit existing
-          setCapstones(capstones.map(c => c.id === formData.id ? { ...formData, file: uploadedFile ? uploadedFile.name : c.file } : c))
+          // setCapstones(capstones.map(c => c.id === formData.id ? { ...formData, file: uploadedFile ? uploadedFile.name : c.file } : c))
+          updateCapstone({ ...formData, file: uploadedFile ? uploadedFile.name : formData.file })
           setModalMessage('Capstone project updated successfully!')
         } else {
           // Add new
           const newId = `CP${String(capstones.length + 1).padStart(3, '0')}`
-          setCapstones([...capstones, { ...formData, id: newId, file: uploadedFile ? uploadedFile.name : null }])
+          // setCapstones([...capstones, { ...formData, id: newId, file: uploadedFile ? uploadedFile.name : null }])
+          addCapstone({ ...formData, id: newId, file: uploadedFile ? uploadedFile.name : null, status: 'Pending' }) // Default to Pending
           setModalMessage('Capstone project added successfully!')
         }
         setFormData({ id: '', title: '', author: '', category: '', year: '', file: null })
@@ -220,12 +221,13 @@ export default function CapstoneProjects() {
 
   const filteredCapstones = capstones.filter(capstone => {
     const matchesCategory = categoryFilter === 'Category' || capstone.category === categoryFilter
-    const matchesSearch = !searchQuery || 
+    const matchesStatus = filterType === 'All' || capstone.status === filterType
+    const matchesSearch = !searchQuery ||
       capstone.id.toLowerCase().includes(searchQuery.toLowerCase()) ||
       capstone.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       capstone.author.toLowerCase().includes(searchQuery.toLowerCase())
 
-    return matchesCategory && matchesSearch
+    return matchesCategory && matchesStatus && matchesSearch
   })
 
   const totalFilteredPages = Math.ceil(filteredCapstones.length / itemsPerPage) || 1
@@ -289,7 +291,7 @@ export default function CapstoneProjects() {
       {/* Sidebar */}
       <aside className="fixed top-0 left-0 flex flex-col items-center w-20 h-screen gap-6 py-6 overflow-hidden bg-purple-900">
         {/* Dashboard Icon */}
-        <div 
+        <div
           onClick={() => navigate('/admin/dashboard')}
           className="flex items-center justify-center w-8 h-8 text-white transition-colors rounded-lg cursor-pointer hover:bg-purple-800"
         >
@@ -299,7 +301,7 @@ export default function CapstoneProjects() {
         </div>
 
         {/* Document Icon */}
-        <div 
+        <div
           onClick={() => navigate('/admin/capstone-projects')}
           className="flex items-center justify-center w-8 h-8 text-white transition-colors bg-purple-800 rounded-lg cursor-pointer hover:bg-purple-800"
         >
@@ -309,7 +311,7 @@ export default function CapstoneProjects() {
         </div>
 
         {/* Users/People Icon */}
-        <div 
+        <div
           onClick={() => navigate('/admin/account-management')}
           className="flex items-center justify-center w-8 h-8 text-white transition-colors rounded-lg cursor-pointer hover:bg-purple-800"
         >
@@ -319,7 +321,10 @@ export default function CapstoneProjects() {
         </div>
 
         {/* User Settings Icon */}
-        <div className="relative flex items-center justify-center w-8 h-8 text-white transition-colors rounded-lg cursor-pointer hover:bg-purple-800">
+        <div
+          onClick={() => navigate('/admin/settings')}
+          className="relative flex items-center justify-center w-8 h-8 text-white transition-colors rounded-lg cursor-pointer hover:bg-purple-800"
+        >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
           </svg>
@@ -357,25 +362,29 @@ export default function CapstoneProjects() {
               {/* Filters */}
               <div className="flex items-center gap-3">
                 <label className="text-sm font-medium text-gray-700">Filter:</label>
-                <select
-                  value={filterType}
-                  onChange={(e) => setFilterType(e.target.value)}
-                  className="px-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                >
-                  <option value="All">All</option>
-                  <option value="Recent">Recent</option>
-                  <option value="Popular">Popular</option>
-                </select>
+                <div className="flex bg-gray-100 rounded-lg p-1">
+                  {['All', 'Approved', 'Pending', 'Archived'].map(status => (
+                    <button
+                      key={status}
+                      onClick={() => setFilterType(status)}
+                      className={`px-3 py-1 text-xs font-medium rounded-md transition-all ${filterType === status
+                        ? 'bg-white text-purple-600 shadow-sm'
+                        : 'text-gray-500 hover:text-gray-700'
+                        }`}
+                    >
+                      {status}
+                    </button>
+                  ))}
+                </div>
                 <select
                   value={categoryFilter}
                   onChange={(e) => setCategoryFilter(e.target.value)}
                   className="px-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                 >
-                  <option value="Category">Category</option>
-                  <option value="Web Application">Web Application</option>
-                  <option value="Mobile Application">Mobile Application</option>
-                  <option value="Networking">Networking</option>
-                  <option value="IoT">IoT</option>
+                  <option value="Category">All Categories</option>
+                  {settings.categories.map((cat, idx) => (
+                    <option key={idx} value={cat}>{cat}</option>
+                  ))}
                 </select>
               </div>
 
@@ -415,6 +424,7 @@ export default function CapstoneProjects() {
                   <th className="px-4 py-3 text-sm font-semibold text-left text-gray-700">Author</th>
                   <th className="px-4 py-3 text-sm font-semibold text-left text-gray-700">Category</th>
                   <th className="px-4 py-3 text-sm font-semibold text-left text-gray-700">Year</th>
+                  <th className="px-4 py-3 text-sm font-semibold text-left text-gray-700">Status</th>
                   <th className="px-4 py-3 text-sm font-semibold text-left text-gray-700">Action</th>
                 </tr>
               </thead>
@@ -435,16 +445,47 @@ export default function CapstoneProjects() {
                       <td className="px-4 py-3 text-sm text-gray-700">{capstone.author}</td>
                       <td className="px-4 py-3 text-sm text-gray-700">{capstone.category}</td>
                       <td className="px-4 py-3 text-sm text-gray-700">{capstone.year}</td>
+                      <td className="px-4 py-3 text-sm">
+                        <span className={`px-2 py-1 rounded-full text-xs font-semibold ${capstone.status === 'Approved' ? 'bg-green-100 text-green-700' :
+                          capstone.status === 'Pending' ? 'bg-yellow-100 text-yellow-700' :
+                            'bg-gray-100 text-gray-700'
+                          }`}>
+                          {capstone.status}
+                        </span>
+                      </td>
                       <td className="px-4 py-3">
                         <div className="flex items-center gap-3">
                           <button
                             onClick={() => handleEdit(capstone)}
                             className="text-purple-600 transition-colors hover:text-purple-700"
+                            title="Edit"
                           >
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                             </svg>
                           </button>
+
+                          {capstone.status === 'Pending' && (
+                            <button
+                              onClick={() => updateCapstoneStatus(capstone.id, 'Approved')}
+                              className="text-green-600 transition-colors hover:text-green-700"
+                              title="Approve"
+                            >
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                              </svg>
+                            </button>
+                          )}
+
+                          {capstone.status !== 'Archived' && (
+                            <button
+                              onClick={() => updateCapstoneStatus(capstone.id, 'Archived')}
+                              className="text-gray-500 transition-colors hover:text-gray-700"
+                              title="Archive"
+                            >
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" /></svg>
+                            </button>
+                          )}
                           <button
                             onClick={() => handleDelete(capstone.id)}
                             className="text-red-500 transition-colors hover:text-red-600"
@@ -492,11 +533,11 @@ export default function CapstoneProjects() {
 
         {/* Choice Modal - Manual Input or Bulk Upload */}
         {isChoiceModalOpen && (
-          <div 
+          <div
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/30 backdrop-blur-sm"
             onClick={() => setIsChoiceModalOpen(false)}
           >
-            <div 
+            <div
               className="w-full max-w-md p-8 bg-white shadow-2xl rounded-xl"
               onClick={(e) => e.stopPropagation()}
             >
@@ -540,11 +581,11 @@ export default function CapstoneProjects() {
 
         {/* Manual Input Modal */}
         {isModalOpen && uploadType === 'manual' && (
-          <div 
+          <div
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/30 backdrop-blur-sm"
             onClick={handleModalClose}
           >
-            <div 
+            <div
               className="w-full max-w-lg p-8 bg-white shadow-2xl rounded-xl"
               onClick={(e) => e.stopPropagation()}
             >
@@ -683,11 +724,11 @@ export default function CapstoneProjects() {
 
         {/* Bulk Upload Modal */}
         {isModalOpen && uploadType === 'bulk' && (
-          <div 
+          <div
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/30 backdrop-blur-sm"
             onClick={handleModalClose}
           >
-            <div 
+            <div
               className="w-full max-w-lg p-8 bg-white shadow-2xl rounded-xl"
               onClick={(e) => e.stopPropagation()}
             >
@@ -768,11 +809,11 @@ export default function CapstoneProjects() {
 
         {/* Add/Edit Modal (for editing existing capstones) */}
         {isModalOpen && !uploadType && (
-          <div 
+          <div
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/30 backdrop-blur-sm"
             onClick={handleModalClose}
           >
-            <div 
+            <div
               className="w-full max-w-lg p-8 bg-white shadow-2xl rounded-xl"
               onClick={(e) => e.stopPropagation()}
             >
@@ -927,11 +968,11 @@ export default function CapstoneProjects() {
 
         {/* Logout Confirmation Modal */}
         {isLogoutModalOpen && (
-          <div 
+          <div
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/30 backdrop-blur-sm"
             onClick={() => setIsLogoutModalOpen(false)}
           >
-            <div 
+            <div
               className="w-full max-w-md p-8 bg-white shadow-2xl rounded-xl"
               onClick={(e) => e.stopPropagation()}
             >
@@ -970,11 +1011,11 @@ export default function CapstoneProjects() {
 
         {/* Success Modal */}
         {showSuccessModal && (
-          <div 
+          <div
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/30 backdrop-blur-sm"
             onClick={() => setShowSuccessModal(false)}
           >
-            <div 
+            <div
               className="w-full max-w-md p-8 bg-white shadow-2xl rounded-xl"
               onClick={(e) => e.stopPropagation()}
             >
@@ -999,11 +1040,11 @@ export default function CapstoneProjects() {
 
         {/* Error Modal */}
         {showErrorModal && (
-          <div 
+          <div
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/30 backdrop-blur-sm"
             onClick={() => setShowErrorModal(false)}
           >
-            <div 
+            <div
               className="w-full max-w-md p-8 bg-white shadow-2xl rounded-xl"
               onClick={(e) => e.stopPropagation()}
             >
@@ -1028,14 +1069,14 @@ export default function CapstoneProjects() {
 
         {/* Delete Confirmation Modal */}
         {isDeleteModalOpen && (
-          <div 
+          <div
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/30 backdrop-blur-sm"
             onClick={() => {
               setIsDeleteModalOpen(false)
               setDeleteItem(null)
             }}
           >
-            <div 
+            <div
               className="w-full max-w-md p-8 bg-white shadow-2xl rounded-xl"
               onClick={(e) => e.stopPropagation()}
             >
@@ -1073,15 +1114,15 @@ export default function CapstoneProjects() {
         {isLoggingOut && (
           <div className="fixed inset-0 flex items-center justify-center min-h-screen z-60">
             <div className="absolute inset-0 bg-white" aria-hidden />
-            <div 
-              className="absolute inset-0 opacity-100" 
-              style={{ 
+            <div
+              className="absolute inset-0 opacity-100"
+              style={{
                 backgroundImage: `url(${V9Gradient})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat'
-              }} 
-              aria-hidden 
+              }}
+              aria-hidden
             />
             <div className="relative z-10 text-center">
               <div className="inline-flex flex-col items-center gap-4">

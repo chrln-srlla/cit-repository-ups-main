@@ -44,13 +44,13 @@ export default function AdminLogin({ isOpen, onClose }) {
   if (!isOpen) return null
 
   return (
-    <div 
+    <div
       className="fixed inset-0 flex items-center justify-center p-4 z-100"
       onClick={handleBackdropClick}
     >
       {/* Blurred Background */}
       <div className="absolute inset-0 backdrop-blur-lg bg-black/40" />
-      
+
       {/* Modal */}
       <div className="relative w-full max-w-md p-8 bg-white border border-purple-100 shadow-2xl rounded-2xl">
         {/* Close Button */}
@@ -78,7 +78,7 @@ export default function AdminLogin({ isOpen, onClose }) {
           </h1>
           <p className="text-sm text-gray-600">Enter your credentials to continue</p>
         </div>
-        
+
         <form onSubmit={handleSubmit} className="space-y-5">
           {/* Username Field */}
           <div>
@@ -99,7 +99,7 @@ export default function AdminLogin({ isOpen, onClose }) {
               />
             </div>
           </div>
-          
+
           {/* Password Field */}
           <div>
             <label className="block mb-2 text-sm font-semibold text-gray-700">Password</label>
@@ -119,7 +119,7 @@ export default function AdminLogin({ isOpen, onClose }) {
               />
             </div>
           </div>
-          
+
           {/* Submit Button */}
           <button
             type="submit"

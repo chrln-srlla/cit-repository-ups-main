@@ -1,9 +1,12 @@
+
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useAdmin } from '../../contexts/AdminContext'
 import V9Gradient from "../../assets/images/V9.svg"
 
 export default function AdminAccountManagement() {
   const navigate = useNavigate()
+  const { admins, addAdmin, updateAdmin, deleteAdmin } = useAdmin()
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
   const [filterType, setFilterType] = useState('All')
@@ -19,16 +22,16 @@ export default function AdminAccountManagement() {
   const [deleteItem, setDeleteItem] = useState(null)
   const [isRefreshing, setIsRefreshing] = useState(false)
   const [isLoggingOut, setIsLoggingOut] = useState(false)
-  
-  // Sample data
-  const [admins, setAdmins] = useState([
-    { id: '22-012', fullName: 'John Doe', email: 'example@cbsua.edu.ph', role: 'Admin', status: 'Active' },
-    { id: '23-343', fullName: 'Evan Hansen', email: 'example@cbsua.edu.ph', role: 'Super Administrator', status: 'Active' },
-    { id: '21-342', fullName: 'Rick Morty', email: 'example@cbsua.edu.ph', role: 'Admin', status: 'Inactive' },
-    { id: '24-001', fullName: 'Jane Smith', email: 'jane@cbsua.edu.ph', role: 'Admin', status: 'Active' },
-    { id: '24-002', fullName: 'Mike Johnson', email: 'mike@cbsua.edu.ph', role: 'Admin', status: 'Inactive' },
-    { id: '24-003', fullName: 'Sarah Williams', email: 'sarah@cbsua.edu.ph', role: 'Super Administrator', status: 'Active' },
-  ])
+
+  // Sample data (REMOVED - now using Context)
+  // const [admins, setAdmins] = useState([
+  //   { id: '22-012', fullName: 'John Doe', email: 'example@cbsua.edu.ph', role: 'Admin', status: 'Active' },
+  //   { id: '23-343', fullName: 'Evan Hansen', email: 'example@cbsua.edu.ph', role: 'Super Administrator', status: 'Active' },
+  //   { id: '21-342', fullName: 'Rick Morty', email: 'example@cbsua.edu.ph', role: 'Admin', status: 'Inactive' },
+  //   { id: '24-001', fullName: 'Jane Smith', email: 'jane@cbsua.edu.ph', role: 'Admin', status: 'Active' },
+  //   { id: '24-002', fullName: 'Mike Johnson', email: 'mike@cbsua.edu.ph', role: 'Admin', status: 'Inactive' },
+  //   { id: '24-003', fullName: 'Sarah Williams', email: 'sarah@cbsua.edu.ph', role: 'Super Administrator', status: 'Active' },
+  // ])
 
   const [formData, setFormData] = useState({
     id: '',
@@ -41,7 +44,7 @@ export default function AdminAccountManagement() {
 
   const itemsPerPage = 5
 
-    useEffect(() => {
+  useEffect(() => {
     // Add shimmer animation styles
     const style = document.createElement('style')
     style.textContent = `
@@ -104,19 +107,28 @@ export default function AdminAccountManagement() {
 
   const handleDelete = (id) => {
     const admin = admins.find(a => a.id === id)
-    setDeleteItem({ id, name: admin?.fullName || 'this admin account', type: 'admin' })
+    setDeleteItem({ id, name: admin?.fullName || 'this admin account', type: 'admin', role: admin?.role })
     setIsDeleteModalOpen(true)
   }
 
   const confirmDelete = () => {
     if (deleteItem) {
+      // PERMISSION CHECK (Mock: Prevent deleting Super Admin for demo purposes)
+      if (deleteItem.role === 'Super Administrator') {
+        alert("Action Denied: You cannot delete a Super Administrator.")
+        setIsDeleteModalOpen(false)
+        setDeleteItem(null)
+        return
+      }
+
       setIsRefreshing(true)
       setIsDeleteModalOpen(false)
       setDeleteItem(null)
-      
+
       // Simulate delete operation with skeleton loading
       setTimeout(() => {
-        setAdmins(admins.filter(a => a.id !== deleteItem.id))
+        // setAdmins(admins.filter(a => a.id !== deleteItem.id)) -- Replaced by Context
+        deleteAdmin(deleteItem.id)
         setIsRefreshing(false)
         setModalMessage('Admin account deleted successfully!')
         setShowSuccessModal(true)
@@ -134,20 +146,22 @@ export default function AdminAccountManagement() {
         setTimeout(() => setShowErrorModal(false), 3000)
         return
       }
-      
+
       setIsRefreshing(true)
       setIsModalOpen(false)
-      
+
       // Simulate save operation with skeleton loading
       setTimeout(() => {
         if (formData.id) {
           // Edit existing
-          setAdmins(admins.map(a => a.id === formData.id ? { ...formData, status: a.status } : a))
+          // setAdmins(admins.map(a => a.id === formData.id ? { ...formData, status: a.status } : a))
+          updateAdmin(formData)
           setModalMessage('Admin account updated successfully!')
         } else {
           // Add new
-          const newId = `24-${String(admins.length + 1).padStart(3, '0')}`
-          setAdmins([...admins, { ...formData, id: newId, status: 'Active' }])
+          const newId = `24-${String(Math.floor(Math.random() * 1000)).padStart(3, '0')}` // Simple ID gen
+          // setAdmins([...admins, { ...formData, id: newId, status: 'Active' }])
+          addAdmin({ ...formData, id: newId })
           setModalMessage('Admin account added successfully!')
         }
         setFormData({ id: '', fullName: '', email: '', role: '', password: '', confirmPassword: '' })
@@ -165,7 +179,7 @@ export default function AdminAccountManagement() {
 
   const filteredAdmins = admins.filter(admin => {
     const matchesFilter = filterType === 'All' || admin.status === filterType
-    const matchesSearch = !searchQuery || 
+    const matchesSearch = !searchQuery ||
       admin.id.toLowerCase().includes(searchQuery.toLowerCase()) ||
       admin.fullName.toLowerCase().includes(searchQuery.toLowerCase()) ||
       admin.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -232,7 +246,7 @@ export default function AdminAccountManagement() {
       {/* Sidebar */}
       <aside className="fixed top-0 left-0 flex flex-col items-center w-20 h-screen gap-6 py-6 overflow-hidden bg-purple-900">
         {/* Dashboard Icon */}
-        <div 
+        <div
           onClick={() => navigate('/admin/dashboard')}
           className="flex items-center justify-center w-8 h-8 text-white transition-colors rounded-lg cursor-pointer hover:bg-purple-800"
         >
@@ -242,7 +256,7 @@ export default function AdminAccountManagement() {
         </div>
 
         {/* Document Icon */}
-        <div 
+        <div
           onClick={() => navigate('/admin/capstone-projects')}
           className="flex items-center justify-center w-8 h-8 text-white transition-colors rounded-lg cursor-pointer hover:bg-purple-800"
         >
@@ -252,7 +266,7 @@ export default function AdminAccountManagement() {
         </div>
 
         {/* Users/People Icon */}
-        <div 
+        <div
           onClick={() => navigate('/admin/account-management')}
           className="flex items-center justify-center w-8 h-8 text-white transition-colors bg-purple-800 rounded-lg cursor-pointer hover:bg-purple-800"
         >
@@ -262,7 +276,10 @@ export default function AdminAccountManagement() {
         </div>
 
         {/* User Settings Icon */}
-        <div className="relative flex items-center justify-center w-8 h-8 text-white transition-colors rounded-lg cursor-pointer hover:bg-purple-800">
+        <div
+          onClick={() => navigate('/admin/settings')}
+          className="relative flex items-center justify-center w-8 h-8 text-white transition-colors rounded-lg cursor-pointer hover:bg-purple-800"
+        >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
           </svg>
@@ -428,11 +445,11 @@ export default function AdminAccountManagement() {
 
         {/* Add/Edit Modal */}
         {isModalOpen && (
-          <div 
+          <div
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/30 backdrop-blur-sm"
             onClick={handleModalClose}
           >
-            <div 
+            <div
               className="w-full max-w-lg p-8 bg-white shadow-2xl rounded-xl"
               onClick={(e) => e.stopPropagation()}
             >
@@ -582,11 +599,11 @@ export default function AdminAccountManagement() {
 
         {/* Logout Confirmation Modal */}
         {isLogoutModalOpen && (
-          <div 
+          <div
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/30 backdrop-blur-sm"
             onClick={() => setIsLogoutModalOpen(false)}
           >
-            <div 
+            <div
               className="w-full max-w-md p-8 bg-white shadow-2xl rounded-xl"
               onClick={(e) => e.stopPropagation()}
             >
@@ -625,11 +642,11 @@ export default function AdminAccountManagement() {
 
         {/* Success Modal */}
         {showSuccessModal && (
-          <div 
+          <div
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/30 backdrop-blur-sm"
             onClick={() => setShowSuccessModal(false)}
           >
-            <div 
+            <div
               className="w-full max-w-md p-8 bg-white shadow-2xl rounded-xl"
               onClick={(e) => e.stopPropagation()}
             >
@@ -654,11 +671,11 @@ export default function AdminAccountManagement() {
 
         {/* Error Modal */}
         {showErrorModal && (
-          <div 
+          <div
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/30 backdrop-blur-sm"
             onClick={() => setShowErrorModal(false)}
           >
-            <div 
+            <div
               className="w-full max-w-md p-8 bg-white shadow-2xl rounded-xl"
               onClick={(e) => e.stopPropagation()}
             >
@@ -683,14 +700,14 @@ export default function AdminAccountManagement() {
 
         {/* Delete Confirmation Modal */}
         {isDeleteModalOpen && (
-          <div 
+          <div
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/30 backdrop-blur-sm"
             onClick={() => {
               setIsDeleteModalOpen(false)
               setDeleteItem(null)
             }}
           >
-            <div 
+            <div
               className="w-full max-w-md p-8 bg-white shadow-2xl rounded-xl"
               onClick={(e) => e.stopPropagation()}
             >
@@ -728,15 +745,15 @@ export default function AdminAccountManagement() {
         {isLoggingOut && (
           <div className="fixed inset-0 z-[60] min-h-screen flex items-center justify-center">
             <div className="absolute inset-0 bg-white" aria-hidden />
-            <div 
-              className="absolute inset-0 opacity-100" 
-              style={{ 
+            <div
+              className="absolute inset-0 opacity-100"
+              style={{
                 backgroundImage: `url(${V9Gradient})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat'
-              }} 
-              aria-hidden 
+              }}
+              aria-hidden
             />
             <div className="relative z-10 text-center">
               <div className="inline-flex flex-col items-center gap-4">

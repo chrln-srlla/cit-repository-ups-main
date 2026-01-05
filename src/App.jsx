@@ -1,4 +1,5 @@
 ﻿import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { AdminProvider } from './contexts/AdminContext'
 import Home from './frontend/Landing Page/Home'
 import Submit from './frontend/Landing Page/Submit'
 import CapstoneSearch from './frontend/Landing Page/CapstoneSearch'
@@ -7,26 +8,30 @@ import AdminLoginPage from './frontend/Admin/AdminLoginPage'
 import AdminDashboard from './frontend/Admin/AdminDashboard'
 import CapstoneProjects from './frontend/Admin/CapstoneProjects'
 import AdminAccountManagement from './frontend/Admin/AdminAccountManagement'
+import AdminSettings from './frontend/Admin/AdminSettings'
 import SignUp from './frontend/SignUp'
 import LogIn from './frontend/LogIn'
 
 
 export default function App() {
 	return (
-		<Router>
-			<Routes>
-				<Route path="/" element={<LogIn />} />
-				<Route path="/signup" element={<SignUp />} />
+		<AdminProvider>
+			<Router>
+				<Routes>
+					<Route path="/" element={<LogIn />} />
+					<Route path="/signup" element={<SignUp />} />
 
-				<Route path="/submit" element={<Submit />} />
-				<Route path="/home" element={<Home />} />
-				<Route path="/capstone" element={<CapstoneSearch />} />
-				<Route path="/about" element={<AboutUs />} />
-				<Route path="/admin/login" element={<AdminLoginPage />} />
-				<Route path="/admin/dashboard" element={<AdminDashboard />} />
-				<Route path="/admin/capstone-projects" element={<CapstoneProjects />} />
-				<Route path="/admin/account-management" element={<AdminAccountManagement />} />
-			</Routes>
-		</Router>
+					<Route path="/submit" element={<Submit />} />
+					<Route path="/home" element={<Home />} />
+					<Route path="/capstone" element={<CapstoneSearch />} />
+					<Route path="/about" element={<AboutUs />} />
+					<Route path="/admin/login" element={<AdminLoginPage />} />
+					<Route path="/admin/dashboard" element={<AdminDashboard />} />
+					<Route path="/admin/capstone-projects" element={<CapstoneProjects />} />
+					<Route path="/admin/account-management" element={<AdminAccountManagement />} />
+					<Route path="/admin/settings" element={<AdminSettings />} />
+				</Routes>
+			</Router>
+		</AdminProvider>
 	)
 }
