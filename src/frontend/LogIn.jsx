@@ -2,6 +2,7 @@ import Logo from "../assets/images/Logo CIT.png";
 import { Link } from "react-router-dom";
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 import useAnimatedToggle from "../hooks/useAnimatedToogle";
 import ForgotPassword from "./ForgotPassword";
 import VerificationCode from "./VerificationCode";
@@ -24,6 +25,7 @@ function LogIn() {
 
     const [isLoading, setIsLoading] = useState(false)
     const navigate = useNavigate();
+    const { login } = useAuth();
 
 
 
@@ -31,12 +33,25 @@ function LogIn() {
         e.preventDefault()
         if (studentNumber && password) {
             setIsLoading(true)
+
+            // Call the login function from AuthContext
+            const result = await login({
+                username: studentNumber,
+                password: password
+            });
+
             await new Promise(resolve => setTimeout(resolve, 1500))
             setIsLoading(false)
-            if (role === "ad") {
-                navigate('/admin/dashboard');
+
+            if (result) {
+                // Login successful, navigate based on role
+                if (role === "ad") {
+                    navigate('/admin/dashboard');
+                } else {
+                    navigate('/home');
+                }
             } else {
-                navigate('/home');
+                alert('Login failed. Please try again.');
             }
         }
     }

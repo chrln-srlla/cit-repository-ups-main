@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../../contexts/AuthContext'
 
 export default function AdminLogin({ isOpen, onClose }) {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
+  const { login } = useAuth()
 
   // Close modal on Escape key
   useEffect(() => {
@@ -28,10 +30,23 @@ export default function AdminLogin({ isOpen, onClose }) {
     e.preventDefault()
     if (username && password) {
       setIsLoading(true)
+
+      // Call the login function from AuthContext
+      const result = await login({
+        username: username,
+        password: password
+      })
+
       await new Promise(resolve => setTimeout(resolve, 1500))
       setIsLoading(false)
-      onClose()
-      navigate('/admin/dashboard')
+
+      if (result) {
+        // Login successful
+        onClose()
+        navigate('/admin/dashboard')
+      } else {
+        alert('Login failed. Please try again.')
+      }
     }
   }
 
