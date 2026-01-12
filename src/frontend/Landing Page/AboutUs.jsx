@@ -1,0 +1,545 @@
+import { useState } from 'react'
+import Navbar from './Navbar'
+import { useNavigate } from 'react-router-dom'
+import CITLogo from '../../assets/images/citLogo.png'
+import V9Gradient from '../../assets/images/V9.svg'
+import AlwynImage from '../../assets/images/Nabor.png'
+import IanImage from '../../assets/images/Anoñuevo.jpg'
+import CaringalImage from '../../assets/images/Caringal.png'
+import SuarillaImage from '../../assets/images/Suarilla.jpg'
+import BobisImage from '../../assets/images/Bobis.jpg'
+import CanasImage from '../../assets/images/Cañas.png'
+import GamboaImage from '../../assets/images/Gamboa.png'
+import MenorImage from '../../assets/images/Menor.png'
+import AdoptanteImage from '../../assets/images/Adoptante.jpg'
+import BelmonteImage from '../../assets/images/Belmonte.png'
+import BenaventeImage from '../../assets/images/Benavente.png'
+import NocheImage from '../../assets/images/noche.png'
+import OribianaImage from '../../assets/images/Oribiana.png'
+import RejotoImage from '../../assets/images/Rejoto.png'
+import SabileImage from '../../assets/images/Sabile.jpg'
+import SandagonImage from '../../assets/images/Sandagon.jpg'
+import SanJoseImage from '../../assets/images/SanJose.jpg'
+import VerzosaJMImage from '../../assets/images/VerzosaJM.png'
+import AlvaradoImage from '../../assets/images/Alvarado.png'
+
+const tabs = ["Frontend Developers", "Backend Developers", "UI/UX Designer", "Researcher", "Documenters"];
+
+const teamMembers = {
+  "Frontend Developers": [
+    {
+      name: "Mark Angelo Alvarado",
+      role: "Frontend Developer",
+      status: "Programmer, Tailwind, React JS",
+      section: "4A",
+      image: AlvaradoImage
+    },
+    {
+      name: "Ian Jay Anoñuevo",
+      role: "Frontend Developer",
+      status: "Programmer, Tailwind, React JS",
+      section: "4A",
+      image: IanImage
+    },
+    {
+      name: "Leomar Ceazar Caringal",
+      role: "Frontend Developer",
+      status: "Programmer",
+      section: "4A",
+      image: CaringalImage
+    },
+    {
+      name: "Josephus Paulo Cordero",
+      role: "Frontend Developer",
+      status: "Programmer",
+      section: "4A",
+      image: null
+    },
+    {
+      name: "Aleron Jay Llenas",
+      role: "Frontend Developer",
+      status: "Programmer",
+      section: "4A",
+      image: null
+    },
+    {
+      name: "Alwyn Nabor",
+      role: "Frontend Developer",
+      status: "Team Leader",
+      section: "4B",
+      image: AlwynImage
+    },
+    {
+      name: "Charline Suarilla",
+      role: "Frontend Developer",
+      status: "Programmer, Tailwind, React JS",
+      section: "4B",
+      image: SuarillaImage
+    },
+    {
+      name: "Marc Jewel Verzosa",
+      role: "Frontend Developer",
+      status: "Programmer",
+      section: "4B",
+      image: null
+    }
+  ],
+  "Backend Developers": [
+    {
+      name: "Emier Amado",
+      role: "Backend Developer",
+      status: "Member",
+      section: "4A",
+      image: null
+    },
+    {
+      name: "Kristan James Aragon",
+      role: "Backend Developer",
+      status: "Member",
+      section: "4A",
+      image: null
+    },
+    {
+      name: "Jaspher Jed Bobis",
+      role: "Backend Developer",
+      status: "Team Leader",
+      section: "4A",
+      image: BobisImage
+    },
+    {
+      name: "Symon Jed Destura",
+      role: "Backend Developer",
+      status: "Member",
+      section: "4A",
+      image: null
+    },
+    {
+      name: "Mikee Laurente",
+      role: "Backend Developer",
+      status: "Member",
+      section: "4A",
+      image: null
+    },
+    {
+      name: "Cyrus Misolas",
+      role: "Backend Developer",
+      status: "Member",
+      section: "4A",
+      image: null
+    }
+  ],
+  "UI/UX Designer": [
+    {
+      name: "Jake Bansig",
+      role: "UI/UX Designer",
+      status: "Member",
+      section: "4A",
+      image: null
+    },
+    {
+      name: "Jose Bequio",
+      role: "UI/UX Designer",
+      status: "Member",
+      section: "4A",
+      image: null
+    },
+    {
+      name: "Tristan Dela Cruz",
+      role: "UI/UX Designer",
+      status: "Member",
+      section: "4B",
+      image: null
+    },
+    {
+      name: "Airon Paul Maala",
+      role: "UI/UX Designer",
+      status: "Member",
+      section: "4A",
+      image: null
+    },
+    {
+      name: "Niko Palenquez",
+      role: "UI/UX Designer",
+      status: "Member",
+      section: "4B",
+      image: null
+    },
+    {
+      name: "Gwyneth Louise Poblete",
+      role: "UI/UX Designer",
+      status: "Member",
+      section: "4B",
+      image: null
+    },
+    {
+      name: "Jessa Mae Solano",
+      role: "UI/UX Designer",
+      status: "Member",
+      section: "4B",
+      image: null
+    }
+  ],
+  "Researcher": [
+    {
+      name: "Ruth Nicole E. Adoptante",
+      role: "Researcher",
+      status: "S/Y 2016-2018",
+      section: "4A",
+      image: AdoptanteImage
+    },
+    {
+      name: "Jean Belmonte",
+      role: "Researcher",
+      status: "S/Y 2022-2025",
+      section: "4A",
+      image: BelmonteImage
+    },
+    {
+      name: "Dynica Benavente",
+      role: "Researcher",
+      status: "S/Y 2016-2018",
+      section: "4A",
+      image: BenaventeImage
+    },
+    {
+      name: "Francis Noche",
+      role: "Researcher",
+      status: "S/Y 2019-2021",
+      section: "4A",
+      image: NocheImage
+    },
+    {
+      name: "Rainer Joshua Oribiana",
+      role: "Researcher",
+      status: "S/Y 2016-2018",
+      section: "4A",
+      image: OribianaImage
+    },
+    {
+      name: "Diana Mary Ann Rejoto",
+      role: "Researcher",
+      status: "S/Y 2022-2025",
+      section: "4A",
+      image: RejotoImage
+    },
+    {
+      name: "Ma. Sarah Sabile",
+      role: "Researcher",
+      status: "Assistant Researcher",
+      section: "4A",
+      image: SabileImage
+    },
+    {
+      name: "Dale Mar Sandagon",
+      role: "Researcher",
+      status: "Lead Researcher",
+      section: "Faculty",
+      image: SandagonImage
+    },
+    {
+      name: "Maria Monica San Jose",
+      role: "Researcher",
+      status: "S/Y 2022-2025",
+      section: "4A",
+      image: SanJoseImage
+    },
+    {
+      name: "Jay Mark Verzosa",
+      role: "Researcher",
+      status: "S/Y 2019-2021",
+      section: "4A",
+      image: VerzosaJMImage
+    }
+  ],
+  "Documenters": [
+    {
+      name: "Ira Antonette Barbacena",
+      role: "Documenter",
+      status: "Member",
+      section: "4A",
+      image: null
+    },
+    {
+      name: "Marlon Caisip",
+      role: "Documenter",
+      status: "Member",
+      section: "4A",
+      image: null
+    },
+    {
+      name: "Mark Jason Cañas",
+      role: "Documenter",
+      status: "Member",
+      section: "4A",
+      image: CanasImage
+    },
+    {
+      name: "Jerick Gamboa",
+      role: "Documenter",
+      status: "Team Leader",
+      section: "4B",
+      image: GamboaImage
+    },
+    {
+      name: "John Eric Troy Jizmundo",
+      role: "Documenter",
+      status: "Member",
+      section: "4A",
+      image: null
+    },
+    {
+      name: "John Joshua Llego",
+      role: "Documenter",
+      status: "Member",
+      section: "4A",
+      image: null
+    },
+    {
+      name: "Ana Mae Menor",
+      role: "Documenter",
+      status: "Member",
+      section: "4A",
+      image: MenorImage
+    },
+    {
+      name: "Angela Olpato",
+      role: "Documenter",
+      status: "Member",
+      section: "4A",
+      image: null
+    },
+    {
+      name: "Michelle Sayat",
+      role: "Documenter",
+      status: "Member",
+      section: "4A",
+      image: null
+    },
+    {
+      name: "Ralph Louie Villanueva",
+      role: "Documenter",
+      status: "Member",
+      section: "4A",
+      image: null
+    }
+  ]
+};
+
+const roleDescriptions = {
+  "Frontend Developers": "Responsible for designing and developing the user interface, ensuring a smooth and visually appealing experience for all users.",
+  "Backend Developers": "Responsible for developing server-side logic, database management, and API integration.",
+  "UI/UX Designer": "Responsible for creating intuitive and visually appealing user interfaces and experiences.",
+  "Researcher": "Responsible for conducting research, gathering requirements, and analyzing user needs.",
+  "Documenters": "Responsible for creating and maintaining project documentation."
+};
+
+export default function AboutUs() {
+  const [activeTab, setActiveTab] = useState("Frontend Developers");
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+
+  const navigate = useNavigate();
+
+  return (
+    <div className="flex flex-col min-h-screen bg-white">
+       <Navbar logout={() => setIsLogoutModalOpen(true)} />
+      
+      {/* About Us */}
+      <section className="relative pt-24 pb-20 overflow-hidden md:pt-32">
+        <div className="absolute inset-0 bg-white" aria-hidden />
+        <div 
+          className="absolute inset-0 opacity-100" 
+          style={{ 
+            backgroundImage: `url(${V9Gradient})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }} 
+          aria-hidden 
+        />
+        <div className="relative flex flex-col items-center px-6 text-center">
+          <div className="mb-12">
+            <div className="relative flex items-center justify-center w-64 h-64 rounded-full shadow-2xl md:w-80 md:h-80 bg-linear-to-br from-purple-100 to-purple-200">
+              <img 
+                src={CITLogo} 
+                alt="CIT Logo" 
+                className="object-contain h-36 w-36 md:w-72 md:h-72"
+              />
+            </div>
+          </div>
+
+          <h1 className="mb-10 text-5xl font-extrabold leading-snug md:text-6xl md:leading-tight">
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 via-purple-600 to-purple-800">About Us</span>
+          </h1>
+
+          {/* Description */}
+          <div className="max-w-4xl mx-auto mb-8">
+            <p className="text-lg leading-relaxed text-center text-gray-600 md:text-xl">
+              This system was created by Batch 2025, sections 4A and 4B, in compliance with their IT Elective subject. It serves as a centralized platform where students can easily access, upload, and explore capstone projects from the College of Information Technology. The purpose of this system is to promote academic collaboration, preserve student research, and provide a convenient digital space for knowledge sharing. It aims to make the research process more efficient and accessible for both students and faculty members, encouraging continuous learning and innovation within the college.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Meet the Team */}
+      <section className="py-16 bg-white">
+        <div className="px-6 mx-auto max-w-7xl">
+
+          <h2 className="mb-4 text-4xl font-extrabold leading-snug text-center md:text-5xl md:leading-tight">
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 via-purple-600 to-purple-800">Meet the Team</span>
+          </h2>
+          
+          <p className="mb-12 text-lg text-center text-gray-600">
+            Get to know the masterminds behind this innovative system.
+          </p>
+
+
+          <div className="flex flex-wrap justify-center gap-4 mb-8 md:gap-6">
+            {tabs.map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`relative text-base md:text-lg font-semibold transition-colors pb-2 px-2 ${
+                  activeTab === tab
+                    ? "text-purple-700 underline decoration-purple-700 decoration-2 underline-offset-4"
+                    : "text-gray-600 hover:text-purple-700"
+                }`}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
+
+          {/* Role Description */}
+          <p className="max-w-3xl mx-auto mb-12 text-center text-gray-700">
+            {roleDescriptions[activeTab]}
+          </p>
+
+          {/* Team Member Cards */}
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+            {teamMembers[activeTab]?.map((member, index) => (
+              <div
+                key={index}
+                className="flex flex-col p-3 transition-all duration-300 shadow-md bg-purple-50 rounded-xl hover:shadow-lg hover:scale-105"
+              >
+                {/* Profile Picture */}
+                <div className="relative flex items-center justify-center w-full mb-3" style={{ height: '180px' }}>
+                  {member.image ? (
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="object-contain w-full h-full"
+                    />
+                  ) : (
+                    <div className="flex items-center justify-center w-full h-full bg-purple-100 rounded-lg">
+                      <span className="text-4xl font-bold text-purple-400">
+                        {member.name.charAt(0)}
+                      </span>
+                    </div>
+                  )}
+                </div>
+
+                {/* Name */}
+                <h3 className="mb-1 text-base font-bold text-center text-purple-800">
+                  {member.name}
+                </h3>
+
+                {/* Role */}
+                <p className="mb-1 text-sm font-normal text-center text-gray-700">
+                  {member.role}
+                </p>
+
+                {/* Status */}
+                <p className="text-xs text-center text-gray-500">
+                  {member.status}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {isLogoutModalOpen && (
+              <div 
+                className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/30 backdrop-blur-sm"
+                onClick={() => setIsLogoutModalOpen(false)}
+              >
+                <div 
+                  className="w-full max-w-md p-8 bg-white shadow-2xl rounded-[2rem]"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <div className="flex items-center justify-center mb-4">
+                    <div className="flex items-center justify-center w-16 h-16 bg-purple-100 rounded-full">
+                      <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                      </svg>
+                    </div>
+                  </div>
+                  <h2 className="mb-2 text-2xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-purple-600 to-purple-800">Confirm Logout</h2>
+                  <p className="mb-6 text-center text-gray-600">Are you sure you want to logout?</p>
+                  <div className="flex gap-3">
+                    <button
+                      onClick={() => setIsLogoutModalOpen(false)}
+                      className="flex-1 px-4 py-2 text-gray-700 transition-colors border border-gray-300 rounded-lg hover:bg-gray-50 font-bold cursor-pointer"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      onClick={() => {
+                        setIsLoggingOut(true);
+                        setIsLogoutModalOpen(false);
+                        setTimeout(() => {
+                          navigate('/')
+                        }, 1500);
+                      }}
+                      className="flex-1 px-4 py-2 text-white transition-colors bg-purple-600 rounded-lg hover:bg-purple-700 font-bold cursor-pointer"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+      
+            {isLoggingOut && (
+              <div className="fixed inset-0 flex items-center justify-center min-h-screen z-[120]">
+                <div className="absolute inset-0 bg-white" aria-hidden />
+                <div 
+                  className="absolute inset-0 opacity-100" 
+                  style={{ 
+                    backgroundImage: `url(${V9Gradient})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat'
+                  }} 
+                  aria-hidden 
+                />
+                <div className="relative z-10 text-center">
+                  <div className="inline-flex flex-col items-center gap-4">
+                    <div className="relative">
+                      <svg className="w-12 h-12 text-purple-600 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      <div className="absolute inset-0 rounded-full bg-purple-600/20 blur-xl"></div>
+                    </div>
+                    <div className="space-y-1">
+                      <span className="block text-2xl font-bold text-transparent bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text">Logging out...</span>
+                      <span className="block text-sm text-gray-500">Redirecting to login page</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+      {/* Footer */}
+        <footer className="py-3 mt-auto text-white bg-linear-to-r from-[#CD9EFF] via-[#7A55A3] to-[#4D0699]">
+          <div className="px-6 mx-auto text-center max-w-7xl">
+              <p className="text-sm md:text-base">
+                  IT Capstone Repository System © 2025 College of Information Technology - All Rights Reserved.
+              </p>
+          </div>
+        </footer>
+    </div>
+  )
+}
