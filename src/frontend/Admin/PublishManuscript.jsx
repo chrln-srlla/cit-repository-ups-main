@@ -75,7 +75,7 @@ export default function PublishManuscript() {
         </div>
 
         <div className="max-w-3xl mx-auto space-y-6">
-
+          
           {/* STEP 1: UPLOAD & CATEGORY */}
           <section className={`bg-white p-8 rounded-[32px] border transition-all ${step === 1 ? 'border-purple-500 shadow-md' : 'border-gray-200 opacity-60'}`}>
             <div className="flex gap-6">
@@ -253,6 +253,7 @@ export default function PublishManuscript() {
           </div>
         </div>
       )}
+      <h1>practice</h1>
     </div>
   );
 }
