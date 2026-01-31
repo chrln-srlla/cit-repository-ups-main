@@ -253,7 +253,6 @@ export default function PublishManuscript() {
           </div>
         </div>
       )}
-      <h1>practice</h1>
     </div>
   );
 }
