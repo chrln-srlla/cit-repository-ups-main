@@ -238,7 +238,6 @@ export default function PublishManuscript() {
         </div>
       )}
 
-      {/* --- SUCCESS MODAL --- */}
       {showSuccessModal && (
         <div className="fixed inset-0 bg-black/20 backdrop-blur-md flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-[32px] p-12 max-w-lg w-full text-center shadow-2xl">
