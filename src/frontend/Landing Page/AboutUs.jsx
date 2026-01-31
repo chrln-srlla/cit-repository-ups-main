@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import Navbar from './Navbar'
+<<<<<<< HEAD
 import { useNavigate } from 'react-router-dom'
+=======
+>>>>>>> upstream/main
 import CITLogo from '../../assets/images/citLogo.png'
 import V9Gradient from '../../assets/images/V9.svg'
 import AlwynImage from '../../assets/images/Nabor.png'
@@ -23,6 +26,10 @@ import SanJoseImage from '../../assets/images/SanJose.jpg'
 import VerzosaJMImage from '../../assets/images/VerzosaJM.png'
 import AlvaradoImage from '../../assets/images/Alvarado.png'
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> upstream/main
 const tabs = ["Frontend Developers", "Backend Developers", "UI/UX Designer", "Researcher", "Documenters"];
 
 const teamMembers = {
@@ -335,6 +342,7 @@ const roleDescriptions = {
 
 export default function AboutUs() {
   const [activeTab, setActiveTab] = useState("Frontend Developers");
+<<<<<<< HEAD
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
 
@@ -346,6 +354,16 @@ export default function AboutUs() {
       
       {/* About Us */}
       <section className="relative pt-24 pb-20 overflow-hidden md:pt-32">
+=======
+
+  return (
+    <div className="flex flex-col min-h-screen bg-white">
+      <Navbar />
+      
+      {/* About Us Section */}
+      <section className="relative pt-24 pb-20 overflow-hidden md:pt-32">
+        {/* V9.svg gradient background - same as Home page */}
+>>>>>>> upstream/main
         <div className="absolute inset-0 bg-white" aria-hidden />
         <div 
           className="absolute inset-0 opacity-100" 
@@ -358,6 +376,10 @@ export default function AboutUs() {
           aria-hidden 
         />
         <div className="relative flex flex-col items-center px-6 text-center">
+<<<<<<< HEAD
+=======
+          {/* Large Circular Icon */}
+>>>>>>> upstream/main
           <div className="mb-12">
             <div className="relative flex items-center justify-center w-64 h-64 rounded-full shadow-2xl md:w-80 md:h-80 bg-linear-to-br from-purple-100 to-purple-200">
               <img 
@@ -368,6 +390,10 @@ export default function AboutUs() {
             </div>
           </div>
 
+<<<<<<< HEAD
+=======
+          {/* About Us Title */}
+>>>>>>> upstream/main
           <h1 className="mb-10 text-5xl font-extrabold leading-snug md:text-6xl md:leading-tight">
             <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 via-purple-600 to-purple-800">About Us</span>
           </h1>
@@ -381,19 +407,34 @@ export default function AboutUs() {
         </div>
       </section>
 
+<<<<<<< HEAD
       {/* Meet the Team */}
       <section className="py-16 bg-white">
         <div className="px-6 mx-auto max-w-7xl">
 
+=======
+      {/* Meet the Team Section */}
+      <section className="py-16 bg-white">
+        <div className="px-6 mx-auto max-w-7xl">
+          {/* Title */}
+>>>>>>> upstream/main
           <h2 className="mb-4 text-4xl font-extrabold leading-snug text-center md:text-5xl md:leading-tight">
             <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 via-purple-600 to-purple-800">Meet the Team</span>
           </h2>
           
+<<<<<<< HEAD
+=======
+          {/* Subtitle */}
+>>>>>>> upstream/main
           <p className="mb-12 text-lg text-center text-gray-600">
             Get to know the masterminds behind this innovative system.
           </p>
 
+<<<<<<< HEAD
 
+=======
+          {/* Team Roles Navigation */}
+>>>>>>> upstream/main
           <div className="flex flex-wrap justify-center gap-4 mb-8 md:gap-6">
             {tabs.map((tab) => (
               <button
@@ -459,6 +500,7 @@ export default function AboutUs() {
         </div>
       </section>
 
+<<<<<<< HEAD
       {isLogoutModalOpen && (
               <div 
                 className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/30 backdrop-blur-sm"
@@ -532,6 +574,8 @@ export default function AboutUs() {
               </div>
             )}
 
+=======
+>>>>>>> upstream/main
       {/* Footer */}
         <footer className="py-3 mt-auto text-white bg-linear-to-r from-[#CD9EFF] via-[#7A55A3] to-[#4D0699]">
           <div className="px-6 mx-auto text-center max-w-7xl">
@@ -542,4 +586,8 @@ export default function AboutUs() {
         </footer>
     </div>
   )
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> upstream/main

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { useState, useEffect } from 'react'
+=======
+import { useState } from 'react'
+>>>>>>> upstream/main
 import Navbar from './Navbar'
 import { useNavigate } from 'react-router-dom'
 import V9Gradient from "../../assets/images/V9.svg"
@@ -14,7 +18,10 @@ import Sparkle from "../../assets/images/sparkle.svg"
 import Quote from "../../assets/images/quote.svg"
 import Share from "../../assets/images/share.svg"
 import Save from "../../assets/images/save.svg"
+<<<<<<< HEAD
 import { useLocation } from "react-router-dom";
+=======
+>>>>>>> upstream/main
 
 
 
@@ -31,13 +38,22 @@ export default function CapstoneSearch() {
     const [categoryFilter, setCategoryFilter] = useState("Category")
     const [title, setTitle] = useState("Search Results")
     const totalPages = 30
+<<<<<<< HEAD
     
+=======
+>>>>>>> upstream/main
 
     const navigate = useNavigate()
     const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
     const [isLoggingOut, setIsLoggingOut] = useState(false)
+<<<<<<< HEAD
     const location = useLocation();
     
+=======
+    
+
+    // Sample dataset with more keywords for better searching
+>>>>>>> upstream/main
     const allCards = [
         {
             id: 1,
@@ -84,6 +100,7 @@ export default function CapstoneSearch() {
             tags: ["IoT", "Automation", "Smart Home"]
         }
     ]
+<<<<<<< HEAD
 
     useEffect(() => {
   if (location.state?.openCapstoneId) {
@@ -98,6 +115,8 @@ export default function CapstoneSearch() {
   }
 }, [location.state]);
 
+=======
+>>>>>>> upstream/main
     
     //Category Card
     const categories = [
@@ -254,8 +273,11 @@ export default function CapstoneSearch() {
     const [selectedCard, setSelectedCard] = useState(null)
     const [generateAI, setGenerateAI] = useState(false);
     const [views, setViews] = useState(0);
+<<<<<<< HEAD
     const [isCitationOpen, setIsCitationOpen] = useState(false)
     const [citationStyle, setCitationStyle] = useState("")
+=======
+>>>>>>> upstream/main
     
     
     const handleGenerateAI = async (e) =>{
@@ -275,6 +297,7 @@ export default function CapstoneSearch() {
         
     }
 
+<<<<<<< HEAD
     const generateCitation = (style, card) => {
   if (!card) return ""
 
@@ -295,6 +318,8 @@ export default function CapstoneSearch() {
 }
 
 
+=======
+>>>>>>> upstream/main
     return (
         <div className="min-h-screen bg-white">
              {isLogoutModalOpen && (
@@ -318,7 +343,11 @@ export default function CapstoneSearch() {
                 <div className="flex gap-3">
                   <button
                     onClick={() => setIsLogoutModalOpen(false)}
+<<<<<<< HEAD
                     className="flex-1 px-4 py-2 text-gray-700 transition-colors border border-gray-300 rounded-lg hover:bg-gray-50 cursor-pointer"
+=======
+                    className="flex-1 px-4 py-2 text-gray-700 transition-colors border border-gray-300 rounded-lg hover:bg-gray-50"
+>>>>>>> upstream/main
                   >
                     Cancel
                   </button>
@@ -330,7 +359,11 @@ export default function CapstoneSearch() {
                           navigate('/')
                         }, 1500)
                       }}
+<<<<<<< HEAD
                       className="flex-1 px-4 py-2 text-white transition-colors bg-purple-600 rounded-lg hover:bg-purple-700 cursor-pointer"
+=======
+                      className="flex-1 px-4 py-2 text-white transition-colors bg-purple-600 rounded-lg hover:bg-purple-700"
+>>>>>>> upstream/main
                     >
                       Logout
                     </button>
@@ -683,6 +716,7 @@ export default function CapstoneSearch() {
                  <div
     className="fixed inset-0 z-10 flex flex-col items-center bg-[#F3f3f3] backdrop-blur-sm"
     onClick={() => setSelectedCard(null)}
+<<<<<<< HEAD
   >
     {/* Container for modal and breadcrumb */}
     <div className="relative w-full max-w-6xl px-8 mt-28">
@@ -690,6 +724,12 @@ export default function CapstoneSearch() {
       <p className="text-sm mb-2 -ml-7 text-gray-600 poppins-regular">
         Repository &gt; {selectedCard.category} &gt; {selectedCard.title}
       </p>
+=======
+    
+  >
+    <div className="w-full text-[#000000B2] pl-50 text-start">
+    <p className='text-sm mt-28 text-start poppins-regular' >Repository &gt; {selectedCard.category} &gt; {selectedCard.title}</p>
+>>>>>>> upstream/main
 
         
     </div>
@@ -707,7 +747,11 @@ export default function CapstoneSearch() {
             </button>
 
             {/* Title */}
+<<<<<<< HEAD
             <h2 className="mb-2 -mt-1 text-2xl text-gray-900 poppins-semibold">
+=======
+            <h2 className="mb-2 text-2xl text-gray-900 poppins-semibold">
+>>>>>>> upstream/main
                 {selectedCard.title}
             </h2>
 
@@ -718,7 +762,11 @@ export default function CapstoneSearch() {
             </p>
 
             {/* Category */}
+<<<<<<< HEAD
             <div className="flex flex-wrap gap-2 mt-1 poppins-regular">
+=======
+            <div className="flex flex-wrap gap-2 mt-6 poppins-regular">
+>>>>>>> upstream/main
                 {selectedCard.tags.map((tag, i) => (
                 <span
                     key={i}
@@ -728,6 +776,7 @@ export default function CapstoneSearch() {
                 </span>
                 ))}
             </div>
+<<<<<<< HEAD
             <div className="flex gap-2 mt-3 mb-3 text-sm poppins-regular">
                 <div
                 onClick={() => setIsCitationOpen(true)}
@@ -735,6 +784,12 @@ export default function CapstoneSearch() {
                 >
                 <span>Cite</span>
                 <img src={Quote} className='w-3' alt="" />
+=======
+            <div className="flex gap-2 mt-3 text-sm poppins-regular">
+                <div className="flex items-center gap-2 pr-2 border-r-2">
+                    <span>Cite</span>
+                    <img src={Quote} className='w-3' alt="" />
+>>>>>>> upstream/main
                 </div>
                 <div className="flex items-center gap-2 pr-2 border-r-2 ">
                     <span>Share</span>
@@ -747,6 +802,7 @@ export default function CapstoneSearch() {
                 
             </div>
 
+<<<<<<< HEAD
             {/* ================= CITATION MODAL ================= */}
 {isCitationOpen && (
   <div
@@ -812,11 +868,17 @@ export default function CapstoneSearch() {
 )}
 
 
+=======
+>>>>>>> upstream/main
 
             {/* Abstract */}
             {!generateAI? (
                 <div className="mt-4 poppins-regular">
+<<<<<<< HEAD
                 <h3 className="mb-2 mt-5 text-2xl text-gray-900 poppins-medium">ABSTRACT</h3>
+=======
+                <h3 className="mb-2 text-2xl text-gray-900 poppins-medium">Abstract</h3>
+>>>>>>> upstream/main
                 <p className="text-sm leading-relaxed text-justify text-gray-700">Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
  Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
 Lorem ipsum dolor sit amet consectetur adipiscing elit. 
@@ -879,4 +941,8 @@ Lorem ipsum dolor sit amet consectetur adipiscing elit.
 
         </div>
     )
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> upstream/main

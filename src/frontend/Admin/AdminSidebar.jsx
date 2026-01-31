@@ -35,6 +35,7 @@ export default function AdminSidebar() {
                     </svg>
                 </div>
 
+<<<<<<< HEAD
                 {/* Capstone Icon - Changed to Folder/Library style to differentiate */}
                 <div
                     onClick={() => navigate('/admin/capstone-projects')}
@@ -47,6 +48,9 @@ export default function AdminSidebar() {
                 </div>
 
                 {/* Manuscript Icon */}
+=======
+                {/* Manuscript Icon (New) */}
+>>>>>>> upstream/main
                 <div
                     onClick={() => navigate('/admin/manuscript-uploads')}
                     className={`flex items-center justify-center w-8 h-8 transition-colors rounded-lg cursor-pointer ${isActive('/admin/manuscript-uploads') ? 'bg-purple-700 text-white' : 'text-white/70 hover:bg-purple-800 hover:text-white'}`}
@@ -57,6 +61,7 @@ export default function AdminSidebar() {
                     </svg>
                 </div>
 
+<<<<<<< HEAD
                 {/* Publish Icon */}
                 <div
                 onClick={() => navigate('/admin/publish-manuscript')}
@@ -67,6 +72,17 @@ export default function AdminSidebar() {
                     alt="Upload Manuscript" 
                 className="w-6 h-6 object-contain opacity-70"
                 />
+=======
+                {/* Capstone Icon - Changed to Folder/Library style to differentiate */}
+                <div
+                    onClick={() => navigate('/admin/capstone-projects')}
+                    className={`flex items-center justify-center w-8 h-8 transition-colors rounded-lg cursor-pointer ${isActive('/admin/capstone-projects') ? 'bg-purple-700 text-white' : 'text-white/70 hover:bg-purple-800 hover:text-white'}`}
+                    title="Capstone Projects"
+                >
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5a2 2 0 01-2 2z" />
+                    </svg>
+>>>>>>> upstream/main
                 </div>
 
                 {/* Users/People Icon */}

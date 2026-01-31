@@ -21,7 +21,6 @@ import AuthTestPage from './frontend/AuthTestPage'
 
 
 export default function App() {
-	// Root Component
 	return (
 		<AuthProvider>
 			<AdminProvider>
@@ -101,14 +100,6 @@ export default function App() {
 								element={
 									<AuthenticatedRoute>
 										<ManuscriptDetail />
-									</AuthenticatedRoute>
-								}
-							/>
-							<Route
-								path="/admin/publish-manuscript"
-								element={
-									<AuthenticatedRoute>
-										<PublishManuscript />
 									</AuthenticatedRoute>
 								}
 							/>

@@ -37,7 +37,11 @@ export default function Home() {
             <div className="flex gap-3">
               <button
                 onClick={() => setIsLogoutModalOpen(false)}
+<<<<<<< HEAD
                 className="flex-1 px-4 py-2 text-gray-700 transition-colors border border-gray-300 rounded-lg hover:bg-gray-50 cursor-pointer"
+=======
+                className="flex-1 px-4 py-2 text-gray-700 transition-colors border border-gray-300 rounded-lg hover:bg-gray-50"
+>>>>>>> upstream/main
               >
                 Cancel
               </button>
@@ -53,7 +57,11 @@ export default function Home() {
                     navigate('/')
                   }, 1500)
                 }}
+<<<<<<< HEAD
                 className="flex-1 px-4 py-2 text-white transition-colors bg-purple-600 rounded-lg hover:bg-purple-700 cursor-pointer"
+=======
+                className="flex-1 px-4 py-2 text-white transition-colors bg-purple-600 rounded-lg hover:bg-purple-700"
+>>>>>>> upstream/main
               >
                 Logout
               </button>

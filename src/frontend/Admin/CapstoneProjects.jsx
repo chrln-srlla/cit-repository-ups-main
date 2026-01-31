@@ -326,11 +326,19 @@ export default function CapstoneProjects() {
                 </select>
               </div>
 
+<<<<<<< HEAD
               {/* Upload Button and Search */}
               <div className="flex items-center gap-3 ml-auto">
                 <button
                   onClick={handleAdd}
                   className="flex items-center justify-center w-10 h-10 text-white transition-colors bg-purple-600 rounded-lg shadow-md hover:bg-purple-700 hover:shadow-lg cursor-pointer"
+=======
+              {/* Add Button and Search */}
+              <div className="flex items-center gap-3 ml-auto">
+                <button
+                  onClick={handleAdd}
+                  className="flex items-center justify-center w-10 h-10 text-white transition-colors bg-purple-600 rounded-lg shadow-md hover:bg-purple-700 hover:shadow-lg"
+>>>>>>> upstream/main
                 >
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -386,7 +394,11 @@ export default function CapstoneProjects() {
                         <div className="flex items-center gap-3">
                           <button
                             onClick={() => handleEdit(capstone)}
+<<<<<<< HEAD
                             className="text-purple-600 transition-colors hover:text-purple-700 cursor-pointer"
+=======
+                            className="text-purple-600 transition-colors hover:text-purple-700"
+>>>>>>> upstream/main
                             title="Edit"
                           >
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -396,7 +408,11 @@ export default function CapstoneProjects() {
 
                           <button
                             onClick={() => updateCapstoneStatus(capstone.id, 'Archived')}
+<<<<<<< HEAD
                             className="text-gray-500 transition-colors hover:text-gray-700 cursor-pointer"
+=======
+                            className="text-gray-500 transition-colors hover:text-gray-700"
+>>>>>>> upstream/main
                             title="Archive"
                           >
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" /></svg>
@@ -404,7 +420,11 @@ export default function CapstoneProjects() {
 
                           <button
                             onClick={() => handleDelete(capstone.id)}
+<<<<<<< HEAD
                             className="text-red-500 transition-colors hover:text-red-600 cursor-pointer"
+=======
+                            className="text-red-500 transition-colors hover:text-red-600"
+>>>>>>> upstream/main
                           >
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -448,6 +468,7 @@ export default function CapstoneProjects() {
         </div>
 
         {/* Choice Modal - Manual Input or Bulk Upload */}
+<<<<<<< HEAD
 {isChoiceModalOpen && (
   <div
     className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/30 backdrop-blur-sm"
@@ -501,6 +522,55 @@ export default function CapstoneProjects() {
     </div>
   </div>
 )}
+=======
+        {isChoiceModalOpen && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/30 backdrop-blur-sm"
+            onClick={() => setIsChoiceModalOpen(false)}
+          >
+            <div
+              className="w-full max-w-md p-8 bg-white shadow-2xl rounded-xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-linear-to-r from-purple-400 via-purple-600 to-purple-800">
+                  Add Capstone
+                </h2>
+                <button
+                  onClick={() => setIsChoiceModalOpen(false)}
+                  className="text-gray-400 transition-colors hover:text-gray-600"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+
+              <div className="space-y-3">
+                <button
+                  onClick={() => handleChoiceSelect('manual')}
+                  className="flex items-center w-full gap-3 px-6 py-4 text-white transition-colors bg-purple-600 shadow-md hover:bg-purple-700 rounded-xl hover:shadow-lg"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                  </svg>
+                  <span className="font-semibold">Manual Input</span>
+                </button>
+                <button
+                  onClick={() => handleChoiceSelect('bulk')}
+                  className="flex items-center w-full gap-3 px-6 py-4 text-white transition-colors bg-purple-600 shadow-md hover:bg-purple-700 rounded-xl hover:shadow-lg"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                  </svg>
+                  <span className="font-semibold">Bulk Upload</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+>>>>>>> upstream/main
         {/* Manual Input Modal */}
         {isModalOpen && uploadType === 'manual' && (
           <div
@@ -644,7 +714,11 @@ export default function CapstoneProjects() {
           </div>
         )}
 
+<<<<<<< HEAD
         {/* File Upload Modal */}
+=======
+        {/* Bulk Upload Modal */}
+>>>>>>> upstream/main
         {isModalOpen && uploadType === 'bulk' && (
           <div
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/30 backdrop-blur-sm"
@@ -656,7 +730,11 @@ export default function CapstoneProjects() {
             >
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-2xl font-bold text-gray-900">
+<<<<<<< HEAD
                   File Upload
+=======
+                  Bulk Upload
+>>>>>>> upstream/main
                 </h2>
                 <button
                   onClick={handleModalClose}
