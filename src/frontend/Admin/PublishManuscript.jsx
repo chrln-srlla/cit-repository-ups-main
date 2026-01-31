@@ -85,7 +85,7 @@ export default function PublishManuscript() {
                 <p className="text-black-500 text-sm mb-6">Upload the final manuscript file and select the most appropriate category based on the manuscript’s keywords and scope.</p>
                 
                 <div className="max-w-xl space-y-6">
-                  {/* File Upload */}
+                 
                   <div>
                     <label className="block text-sm font-bold text-black-700 mb-2">
                       Upload Manuscript (PDF/DOCX) <span className="text-red-500">*</span>
